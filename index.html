@@ -92,14 +92,14 @@
         /* Fluid editorial display scale, ratio ~1.27 between steps.
        Each clamp anchors a min size on small viewports and a max size on wide screens,
        with the middle term scaling smoothly across the band. */
-        --disp-hero: clamp(2.625rem, 0.55rem + 7.5vw, 6rem); /*  42 → 96 */
-        --disp-h1: clamp(2.5rem, 1.05rem + 5vw, 4.5rem); /*  40 → 72 */
-        --disp-h2: clamp(2.25rem, 1.2rem + 4.5vw, 4.25rem); /*  36 → 68 */
-        --disp-h2-sm: clamp(2rem, 1.2rem + 3.5vw, 3.625rem); /*  32 → 58 */
-        --disp-h3: clamp(1.875rem, 1.1rem + 3vw, 2.75rem); /*  30 → 44 */
-        --disp-h3-sm: clamp(1.625rem, 1.05rem + 2.4vw, 2.25rem); /*  26 → 36 */
-        --disp-h4: clamp(1.5rem, 1rem + 1.4vw, 2rem); /*  24 → 32 */
-        --disp-quote: clamp(1.625rem, 0.55rem + 4.2vw, 3.25rem); /*  26 → 52 */
+        --disp-hero: clamp(2.125rem, 0.4rem + 7.2vw, 6rem); /*  34 → 96 */
+        --disp-h1: clamp(2rem, 0.8rem + 5vw, 4.5rem); /*  32 → 72 */
+        --disp-h2: clamp(1.75rem, 0.7rem + 4.5vw, 4.25rem); /*  28 → 68 */
+        --disp-h2-sm: clamp(1.625rem, 0.8rem + 3.5vw, 3.625rem); /*  26 → 58 */
+        --disp-h3: clamp(1.5rem, 0.85rem + 2.8vw, 2.75rem); /*  24 → 44 */
+        --disp-h3-sm: clamp(1.375rem, 0.85rem + 2.2vw, 2.25rem); /*  22 → 36 */
+        --disp-h4: clamp(1.25rem, 0.85rem + 1.4vw, 2rem); /*  20 → 32 */
+        --disp-quote: clamp(1.375rem, 0.4rem + 4.2vw, 3.25rem); /*  22 → 52 */
       }
 
       [hidden] {
@@ -836,12 +836,14 @@
       /* Province caption strip (footer trade marks) */
       .marks {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px 28px;
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
-      @media (min-width: 768px) {
+      @media (min-width: 640px) {
         .marks {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(3, auto);
+          justify-content: space-between;
+          gap: 12px 28px;
         }
       }
 
@@ -893,6 +895,81 @@
         border: 1px solid oklch(0.692 0.082 75 / 0.32);
         padding: 36px 28px;
         background: oklch(0.22 0.011 47 / 0.4);
+      }
+
+      /* ----- Mobile drawer ----- */
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 360ms var(--ease-q);
+        background: oklch(0.165 0.013 50 / 0.98);
+        border-top: 1px solid oklch(0.265 0.014 45);
+      }
+      #mobile-menu.open {
+        max-height: 520px;
+      }
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        font-size: 15px;
+        letter-spacing: -0.005em;
+        color: var(--parchment);
+        border-bottom: 1px solid oklch(0.265 0.014 45 / 0.6);
+      }
+      .mobile-link:last-of-type {
+        border-bottom: 0;
+      }
+      .mobile-link .arr {
+        opacity: 0.5;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dust);
+      }
+      .mobile-link:active {
+        color: var(--gold);
+      }
+      .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin-right: -10px;
+        border-radius: 2px;
+        color: var(--parchment);
+      }
+      .menu-btn:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .menu-btn .bar {
+        position: absolute;
+        width: 18px;
+        height: 1.4px;
+        background: currentColor;
+        transition:
+          transform 280ms var(--ease-q),
+          opacity 200ms var(--ease-q);
+      }
+      .menu-btn .bar:nth-child(1) {
+        transform: translateY(-5px);
+      }
+      .menu-btn .bar:nth-child(3) {
+        transform: translateY(5px);
+      }
+      .menu-btn[aria-expanded="true"] .bar:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      .menu-btn[aria-expanded="true"] .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-btn[aria-expanded="true"] .bar:nth-child(3) {
+        transform: rotate(-45deg);
       }
     </style>
   </head>
@@ -1116,18 +1193,18 @@
       <!-- ────────────  HEADER  ──────────── -->
       <header
         id="site-header"
-        class="sticky top-0 z-40 bg-ink/95 supports-[backdrop-filter]:bg-ink/85 supports-[backdrop-filter]:backdrop-blur-sm border-b border-rule/60"
+        class="relative z-40 bg-ink/95 supports-[backdrop-filter]:bg-ink/85 supports-[backdrop-filter]:backdrop-blur-sm border-b border-rule/60"
       >
         <div class="container-tight">
           <div
-            class="header-inner h-[78px] flex items-center justify-between gap-6"
+            class="header-inner h-[66px] lg:h-[78px] flex items-center justify-between gap-6"
           >
             <a
               href="#"
               class="flex items-baseline gap-3 shrink-0"
               aria-label="Don Cubano Cigars, home"
             >
-              <span class="serif text-[22px] tracking-[-0.018em]"
+              <span class="serif text-[20px] sm:text-[22px] tracking-[-0.018em]"
                 >Don Cubano</span
               >
               <span
@@ -1146,40 +1223,47 @@
             </nav>
             <a
               href="#contact"
-              class="btn-line text-[11px] py-3 hidden sm:inline-flex"
+              class="btn-line text-[11px] py-3 hidden lg:inline-flex"
               >Open an account</a
             >
+            <button
+              type="button"
+              id="menu-toggle"
+              class="menu-btn relative lg:hidden"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              aria-label="Open menu"
+            >
+              <span class="bar" aria-hidden="true"></span>
+              <span class="bar" aria-hidden="true"></span>
+              <span class="bar" aria-hidden="true"></span>
+            </button>
           </div>
         </div>
         <nav
-          class="lg:hidden border-t border-rule/50 bg-ink"
+          id="mobile-menu"
+          class="lg:hidden"
           aria-label="Primary navigation, mobile"
         >
-          <ul
-            class="container-tight flex items-stretch justify-between text-[12.5px] text-parchment/85"
-          >
-            <li class="flex-1">
-              <a
-                href="#house"
-                class="nav-link block text-center !py-3 min-h-[44px]"
-                >About Us</a
-              >
-            </li>
-            <li class="flex-1 border-x border-rule/40">
-              <a
-                href="#casaberro"
-                class="nav-link block text-center !py-3 min-h-[44px]"
-                >Casa Berro</a
-              >
-            </li>
-            <li class="flex-1">
-              <a
-                href="#contact"
-                class="nav-link block text-center !py-3 min-h-[44px]"
-                >Contact</a
-              >
-            </li>
-          </ul>
+          <div class="container-tight py-2">
+            <a href="#house" class="mobile-link">
+              <span>About Us</span><span class="arr">01</span>
+            </a>
+            <a href="#casaberro" class="mobile-link">
+              <span>Casa Berro</span><span class="arr">02</span>
+            </a>
+            <a href="blend-your-own.html" class="mobile-link">
+              <span>Blend Your Own</span><span class="arr">03</span>
+            </a>
+            <a href="retailers.html" class="mobile-link">
+              <span>Our Retailers</span><span class="arr">04</span>
+            </a>
+            <a
+              href="#contact"
+              class="btn-solid mt-5 mb-4 w-full justify-center"
+              >Open an account</a
+            >
+          </div>
         </nav>
       </header>
 
@@ -1232,7 +1316,7 @@
 
           <div class="container-tight relative" style="z-index: 2">
             <div
-              class="flex flex-col items-center text-center pt-20 sm:pt-28 lg:pt-36 pb-16 lg:pb-24"
+              class="flex flex-col items-center text-center pt-14 sm:pt-24 lg:pt-36 pb-12 sm:pb-16 lg:pb-24"
             >
               <div
                 class="rise rise-1 inline-flex items-center gap-3 eyebrow mb-7"
@@ -1292,7 +1376,7 @@
 
           <!-- ════════════════  SECTION 3 · Casa Berro  ════════════════ -->
           <section
-            id="Casa Berro"
+            id="casaberro"
             class="relative hair-top"
             style="background: var(--ink)"
           >
@@ -1340,11 +1424,11 @@
 
             <!-- Header copy -->
             <div
-              class="container-wide pt-20 lg:pt-28 pb-6 lg:pb-8 relative"
+              class="container-wide pt-14 sm:pt-20 lg:pt-28 pb-4 sm:pb-6 lg:pb-8 relative"
               style="z-index: 2"
             >
               <div class="flex flex-col items-center text-center">
-                <div class="inline-flex items-center gap-3 eyebrow mb-7">
+                <div class="inline-flex items-center gap-3 eyebrow mb-6 sm:mb-7">
                   <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
                   <span>Casa Berro &middot; Signature Line</span>
                   <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
@@ -1353,7 +1437,7 @@
                   Casa Berro, <span class="serif-i">Our Signature Line.</span>
                 </h2>
                 <p
-                  class="mt-8 lg:mt-10 text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
+                  class="mt-6 sm:mt-8 lg:mt-10 text-[15px] sm:text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
                 >
                   Casa Berro offers four premium hand-rolled cigar blends
                   developed in Nicaragua and supplied through Don Cubano.
@@ -1366,10 +1450,10 @@
           </section>
 
           <!-- Casa Berro carousel (Gallery6 pattern, native JS + Embla-free) -->
-          <div class="pl-6 lg:pl-10 pb-16 lg:pb-24">
+          <div class="pl-6 lg:pl-10 pt-6 sm:pt-8 lg:pt-10 pb-14 sm:pb-16 lg:pb-24 pr-6 lg:pr-0">
             <!-- Header row: title left, arrows right -->
             <div
-              class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 lg:mb-14 hair-bottom pb-8"
+              class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-10 lg:mb-14 hair-bottom pb-6 sm:pb-8"
             >
               <div>
                 <div class="eyebrow mb-4">Casa Berro · Four Lines</div>
@@ -1790,10 +1874,10 @@
               decoding="async"
             />
             <div
-              class="container-wide pt-20 lg:pt-28 pb-20 lg:pb-28 relative z-[1]"
+              class="container-wide pt-14 sm:pt-20 lg:pt-28 pb-14 sm:pb-20 lg:pb-28 relative z-[1]"
             >
               <div class="flex flex-col items-center text-center">
-                <div class="inline-flex items-center gap-3 eyebrow mb-7">
+                <div class="inline-flex items-center gap-3 eyebrow mb-6 sm:mb-7">
                   <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
                   <span>About Us</span>
                   <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
@@ -1803,7 +1887,7 @@
                   <span class="serif-i">Rolled in Estelí.</span>
                 </h2>
                 <p
-                  class="mt-8 lg:mt-10 text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
+                  class="mt-6 sm:mt-8 lg:mt-10 text-[15px] sm:text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
                 >
                   Don Cubano is a family-owned, Canadian wholesale cigar distributor based in Windsor, Ontario. Since 2008 we have worked directly with manufacturers in Estelí, Nicaragua, blending cigars with tobacco sourced from across four nations for the Canadian retail market.
                 </p>
@@ -1812,9 +1896,9 @@
           </div>
 
          <!-- Partner releases · Gallery4 pattern -->
-<div class="pt-16 lg:pt-24 pb-16 lg:pb-20">
+<div class="pt-12 sm:pt-16 lg:pt-24 pb-14 sm:pb-16 lg:pb-20">
   <!-- Header -->
-  <div class="container-tight mb-10 lg:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
+  <div class="container-tight mb-8 sm:mb-10 lg:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-5">
     <div>
       <div class="eyebrow mb-4">PREMIUM BRANDS</div>
       <h3 class="h-display disp-h3-sm max-w-[22ch]">
@@ -1980,8 +2064,8 @@
 
         <!-- Pull quote spread -->
         <section class="relative pullquote">
-          <div class="container-tight py-16 lg:py-24 text-center">
-            <div class="eyebrow mb-9 inline-flex items-center gap-3">
+          <div class="container-tight py-14 sm:py-16 lg:py-24 text-center">
+            <div class="eyebrow mb-7 sm:mb-9 inline-flex items-center gap-3">
               <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
               <span>One retailer, sixteen years</span>
             </div>
@@ -1989,14 +2073,14 @@
               <p class="serif-i disp-quote hang-quote text-parchment/95">
                 “We’ve carried Don Cubano Cigars since day one, and they’ve crafted our house blends with the same consistent quality and reliability ever since.”
               </p>
-              <figcaption class="mt-10 eyebrow tnum">
+              <figcaption class="mt-8 sm:mt-10 eyebrow tnum">
                 Independent retailer · Toronto, Ontario
               </figcaption>
             </figure>
 
             <!-- Hairline of the four "what they come back for" claims, demoted from a section -->
             <div
-              class="mt-20 lg:mt-24 hair-top pt-7 text-[12px] tracking-[0.16em] uppercase text-dust flex flex-wrap justify-center gap-x-6 lg:gap-x-12 gap-y-3"
+              class="mt-14 sm:mt-20 lg:mt-24 hair-top pt-7 text-[11.5px] sm:text-[12px] tracking-[0.16em] uppercase text-dust flex flex-wrap justify-center gap-x-5 sm:gap-x-6 lg:gap-x-12 gap-y-3"
             >
               <span>Competitive Pricing</span>
               <span class="text-gold">·</span>
@@ -2011,32 +2095,32 @@
 
         <!-- Contact -->
         <section id="contact" class="relative">
-          <div class="container-tight py-16 lg:py-24">
-            <div class="grid lg:grid-cols-12 gap-x-10 gap-y-12 lg:gap-y-16">
+          <div class="container-tight py-14 sm:py-16 lg:py-24">
+            <div class="grid lg:grid-cols-12 gap-x-10 gap-y-10 sm:gap-y-12 lg:gap-y-16">
               <!-- Left: copy + contact details -->
               <div class="lg:col-span-7">
                 <div class="flex items-center gap-3 eyebrow mb-7">
                   <span>Open an account</span>
                 </div>
-                <h2 class="h-display disp-h2">
+                <h2 class="h-display disp-h2 max-w-[20ch]">
                   For Retailers Ready to Stock
                   <span class="serif-i text-gold">a Working Line.</span>
                 </h2>
                 <p
-                  class="mt-9 text-[16px] leading-[1.78] text-parchment/85 max-w-[560px]"
+                  class="mt-7 sm:mt-9 text-[15px] sm:text-[16px] leading-[1.78] text-parchment/85 max-w-[560px]"
                 >
                   We work directly with licensed Canadian cigar retailers. Reach
                   out, and we will send the current catalogue.
                 </p>
 
                 <div
-                  class="mt-12 lg:mt-16 grid sm:grid-cols-2 gap-x-10 gap-y-9 max-w-[560px]"
+                  class="mt-10 sm:mt-12 lg:mt-16 grid sm:grid-cols-2 gap-x-10 gap-y-7 sm:gap-y-9 max-w-[560px]"
                 >
                   <div>
                     <div class="eyebrow">By telephone</div>
                     <a
                       href="tel:+15195551207"
-                      class="serif tnum text-[20px] mt-2.5 block hover:text-gold transition-colors"
+                      class="serif tnum text-[18px] sm:text-[20px] mt-2.5 block hover:text-gold transition-colors"
                       >+1 (226) 506-2954</a
                     >
                   </div>
@@ -2044,7 +2128,7 @@
                     <div class="eyebrow">By correspondence</div>
                     <a
                       href="mailto:trade@doncubano.ca"
-                      class="serif text-[20px] mt-2.5 block hover:text-gold transition-colors"
+                      class="serif text-[16px] sm:text-[19px] lg:text-[20px] mt-2.5 block break-all hover:text-gold transition-colors"
                       >doncubanotobacco@hotmail.com</a
                     >
                   </div>
@@ -2240,7 +2324,7 @@
       </main>
 
       <!-- ──────────────────────  FOOTER  ────────────────────── -->
-      <footer class="border-t border-rule/60 pb-6 pt-16 lg:pb-8 lg:pt-24">
+      <footer class="border-t border-rule/60 pb-6 pt-12 sm:pt-16 lg:pb-8 lg:pt-24">
         <div class="container-tight">
           <!-- Top row: brand mark + social -->
           <div class="md:flex md:items-start md:justify-between">
@@ -2284,7 +2368,7 @@
             <ul class="flex list-none mt-8 md:mt-0 space-x-3">
               <li>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/doncubanocigars/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -2308,7 +2392,7 @@
               </li>
               <li>
                 <a
-                  href="mailto:trade@doncubano.ca"
+                  href="mailto:doncubanotobacco@hotmail.com"
                   aria-label="Email trade desk"
                   class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
                 >
@@ -2570,6 +2654,34 @@
           },
           { passive: true },
         );
+
+        // ──────────────────────  Mobile menu toggle  ──────────────────────
+        var menuBtn = document.getElementById("menu-toggle");
+        var menuPanel = document.getElementById("mobile-menu");
+        if (menuBtn && menuPanel) {
+          function setMenu(open) {
+            menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+            menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            menuPanel.classList.toggle("open", open);
+          }
+          menuBtn.addEventListener("click", function () {
+            var open = menuBtn.getAttribute("aria-expanded") === "true";
+            setMenu(!open);
+          });
+          // Close on link tap and on viewport widening past breakpoint
+          menuPanel.querySelectorAll("a").forEach(function (a) {
+            a.addEventListener("click", function () {
+              setMenu(false);
+            });
+          });
+          window.addEventListener(
+            "resize",
+            function () {
+              if (window.innerWidth >= 1024) setMenu(false);
+            },
+            { passive: true },
+          );
+        }
 
         // ──────────────────────  Trade form  ──────────────────────
         var form = document.getElementById("trade-form");

@@ -439,6 +439,84 @@
           transform: none;
         }
       }
+
+      /* ----- Mobile drawer ----- */
+      #mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 360ms var(--ease-q);
+        background: oklch(0.165 0.013 50 / 0.98);
+        border-top: 1px solid oklch(0.265 0.014 45);
+      }
+      #mobile-menu.open {
+        max-height: 520px;
+      }
+      .mobile-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        font-size: 15px;
+        letter-spacing: -0.005em;
+        color: var(--parchment);
+        border-bottom: 1px solid oklch(0.265 0.014 45 / 0.6);
+      }
+      .mobile-link:last-of-type {
+        border-bottom: 0;
+      }
+      .mobile-link[aria-current="page"] {
+        color: var(--gold);
+      }
+      .mobile-link .arr {
+        opacity: 0.5;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dust);
+      }
+      .mobile-link:active {
+        color: var(--gold);
+      }
+      .menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        margin-right: -10px;
+        border-radius: 2px;
+        color: var(--parchment);
+      }
+      .menu-btn:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .menu-btn .bar {
+        position: absolute;
+        width: 18px;
+        height: 1.4px;
+        background: currentColor;
+        transition:
+          transform 280ms var(--ease-q),
+          opacity 200ms var(--ease-q);
+      }
+      .menu-btn .bar:nth-child(1) {
+        transform: translateY(-5px);
+      }
+      .menu-btn .bar:nth-child(3) {
+        transform: translateY(5px);
+      }
+      .menu-btn[aria-expanded="true"] .bar:nth-child(1) {
+        transform: rotate(45deg);
+      }
+      .menu-btn[aria-expanded="true"] .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-btn[aria-expanded="true"] .bar:nth-child(3) {
+        transform: rotate(-45deg);
+      }
     </style>
   </head>
   <body class="bg-ink text-parchment font-sans">
@@ -449,14 +527,14 @@
     >
       <div class="container-tight">
         <div
-          class="header-inner h-[78px] flex items-center justify-between gap-6"
+          class="header-inner h-[66px] lg:h-[78px] flex items-center justify-between gap-6"
         >
           <a
             href="index.html"
             class="flex items-baseline gap-3 shrink-0"
             aria-label="Don Cubano Cigars, home"
           >
-            <span class="serif text-[22px] tracking-[-0.018em]"
+            <span class="serif text-[20px] sm:text-[22px] tracking-[-0.018em]"
               >Don Cubano</span
             >
             <span
@@ -477,41 +555,47 @@
           </nav>
           <a
             href="index.html#contact"
-            class="btn-line text-[11px] py-3 hidden sm:inline-flex"
+            class="btn-line text-[11px] py-3 hidden lg:inline-flex"
             >Open an account</a
           >
+          <button
+            type="button"
+            id="menu-toggle"
+            class="menu-btn relative lg:hidden"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            aria-label="Open menu"
+          >
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+            <span class="bar" aria-hidden="true"></span>
+          </button>
         </div>
       </div>
       <nav
-        class="lg:hidden border-t border-rule/50 bg-ink"
+        id="mobile-menu"
+        class="lg:hidden"
         aria-label="Primary navigation, mobile"
       >
-        <ul
-          class="container-tight flex items-stretch justify-between text-[12.5px] text-parchment/85"
-        >
-          <li class="flex-1">
-            <a
-              href="index.html#house"
-              class="nav-link block text-center !py-3 min-h-[44px]"
-              >About Us</a
-            >
-          </li>
-          <li class="flex-1 border-x border-rule/40">
-            <a
-              href="blend-your-own.html"
-              class="nav-link block text-center !py-3 min-h-[44px]"
-              aria-current="page"
-              >Blend Your Own</a
-            >
-          </li>
-          <li class="flex-1">
-            <a
-              href="index.html#contact"
-              class="nav-link block text-center !py-3 min-h-[44px]"
-              >Contact</a
-            >
-          </li>
-        </ul>
+        <div class="container-tight py-2">
+          <a href="index.html#house" class="mobile-link">
+            <span>About Us</span><span class="arr">01</span>
+          </a>
+          <a href="index.html#casaberro" class="mobile-link">
+            <span>Casa Berro</span><span class="arr">02</span>
+          </a>
+          <a href="blend-your-own.html" class="mobile-link" aria-current="page">
+            <span>Blend Your Own</span><span class="arr">03</span>
+          </a>
+          <a href="retailers.html" class="mobile-link">
+            <span>Our Retailers</span><span class="arr">04</span>
+          </a>
+          <a
+            href="index.html#contact"
+            class="btn-solid mt-5 mb-4 w-full justify-center"
+            >Open an account</a
+          >
+        </div>
       </nav>
     </header>
 
@@ -1028,5 +1112,33 @@
       </div>
       <div class="border-t border-rule/60 mt-10 md:mt-12"></div>
     </footer>
+
+    <script>
+      (function () {
+        var btn = document.getElementById("menu-toggle");
+        var panel = document.getElementById("mobile-menu");
+        if (!btn || !panel) return;
+        function setMenu(open) {
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+          panel.classList.toggle("open", open);
+        }
+        btn.addEventListener("click", function () {
+          setMenu(btn.getAttribute("aria-expanded") !== "true");
+        });
+        panel.querySelectorAll("a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            setMenu(false);
+          });
+        });
+        window.addEventListener(
+          "resize",
+          function () {
+            if (window.innerWidth >= 1024) setMenu(false);
+          },
+          { passive: true },
+        );
+      })();
+    </script>
   </body>
 </html>
