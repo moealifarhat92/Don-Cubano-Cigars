@@ -1,0 +1,1032 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blend Your Own · Don Cubano Cigars</title>
+    <meta
+      name="description"
+      content="Private label and custom blends from Don Cubano. Tobacco, wrapper, vitola, bands, and packaging — guided from first call to first shipment. No minimum order."
+    />
+    <meta name="theme-color" content="#1F1611" />
+    <meta property="og:title" content="Blend Your Own · Don Cubano Cigars" />
+    <meta
+      property="og:description"
+      content="Custom blends, wrappers, vitolas, bands, and packaging — no MOQ. Family-owned, Canadian, since 2008."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "oklch(0.165 0.013 50)",
+              "ink-2": "oklch(0.195 0.013 50)",
+              carbon: "oklch(0.220 0.011 47)",
+              "carbon-2": "oklch(0.260 0.011 47)",
+              gold: "oklch(0.692 0.082 75)",
+              "gold-soft": "oklch(0.752 0.060 78)",
+              parchment: "oklch(0.892 0.024 81)",
+              dust: "oklch(0.685 0.005 60)",
+              sage: "oklch(0.355 0.025 110)",
+              rule: "oklch(0.265 0.014 45)",
+              ember: "oklch(0.572 0.144 47)",
+            },
+            fontFamily: {
+              serif: ["Spectral", "Libre Baskerville", "Georgia", "serif"],
+              sans: [
+                "Hanken Grotesk",
+                "system-ui",
+                "-apple-system",
+                "sans-serif",
+              ],
+            },
+            letterSpacing: {
+              eye: "0.22em",
+              "eye-tight": "0.16em",
+              "eye-wide": "0.34em",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --ink: oklch(0.165 0.013 50);
+        --carbon: oklch(0.22 0.011 47);
+        --gold: oklch(0.692 0.082 75);
+        --parchment: oklch(0.892 0.024 81);
+        --dust: oklch(0.685 0.005 60);
+        --rule-line: oklch(0.265 0.014 45);
+        --ease-q: cubic-bezier(0.22, 1, 0.36, 1);
+
+        --disp-h1: clamp(2.5rem, 1.05rem + 5vw, 4.5rem);
+        --disp-h2: clamp(2.25rem, 1.2rem + 4.5vw, 4.25rem);
+        --disp-h2-sm: clamp(2rem, 1.2rem + 3.5vw, 3.625rem);
+        --disp-h3: clamp(1.875rem, 1.1rem + 3vw, 2.75rem);
+      }
+
+      html,
+      body {
+        background: var(--ink);
+      }
+      body {
+        font-family:
+          "Hanken Grotesk",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: var(--parchment);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        font-weight: 400;
+        line-height: 1.65;
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "calt" 1;
+        font-kerning: normal;
+      }
+      p {
+        text-wrap: pretty;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      .serif {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.012em;
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "calt" 1,
+          "onum" 1;
+      }
+      .serif-i {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        letter-spacing: -0.006em;
+      }
+      .h-display {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.022em;
+        line-height: 1.04;
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "dlig" 1,
+          "calt" 1;
+        font-variant-numeric: lining-nums proportional-nums;
+        text-wrap: balance;
+      }
+      .h-display-tight {
+        letter-spacing: -0.032em;
+        line-height: 1;
+      }
+
+      .disp-h1 {
+        font-size: var(--disp-h1);
+        letter-spacing: -0.03em;
+        line-height: 1.02;
+      }
+      .disp-h2 {
+        font-size: var(--disp-h2);
+        letter-spacing: -0.028em;
+        line-height: 1.04;
+      }
+      .disp-h2-sm {
+        font-size: var(--disp-h2-sm);
+        letter-spacing: -0.024em;
+        line-height: 1.06;
+      }
+      .disp-h3 {
+        font-size: var(--disp-h3);
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+      }
+
+      .eyebrow {
+        font-size: 0.6875rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dust);
+        font-weight: 500;
+        font-feature-settings:
+          "kern" 1,
+          "tnum" 1,
+          "lnum" 1;
+      }
+
+      .num {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-style: italic;
+        color: var(--gold);
+        font-weight: 400;
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+
+      .btn-line,
+      .btn-solid {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 24px;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 500;
+        border-radius: 2px;
+        transition:
+          background 240ms var(--ease-q),
+          color 240ms var(--ease-q),
+          border-color 240ms var(--ease-q),
+          transform 240ms var(--ease-q);
+      }
+      .btn-line {
+        border: 1px solid oklch(0.692 0.082 75 / 0.45);
+        color: var(--parchment);
+        background: transparent;
+      }
+      .btn-line:hover {
+        border-color: var(--gold);
+        background: oklch(0.692 0.082 75 / 0.1);
+        transform: translateY(-1px);
+      }
+      .btn-solid {
+        background: var(--gold);
+        color: var(--ink);
+        border: 1px solid var(--gold);
+      }
+      .btn-solid:hover {
+        background: oklch(0.752 0.082 75);
+        border-color: oklch(0.752 0.082 75);
+        transform: translateY(-1px);
+      }
+
+      .container-tight {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+      @media (min-width: 1024px) {
+        .container-tight {
+          padding-inline: 40px;
+        }
+      }
+
+      /* ─── Nav link (shared with index) ─── */
+      .nav-link {
+        transition: color 220ms var(--ease-q);
+        position: relative;
+        padding: 8px 2px;
+        display: inline-block;
+      }
+      .nav-link:hover,
+      .nav-link:focus-visible {
+        color: var(--gold);
+        outline: none;
+      }
+      .nav-link:focus-visible {
+        text-decoration: underline;
+        text-underline-offset: 6px;
+        text-decoration-color: var(--gold);
+      }
+      .nav-link[aria-current="page"] {
+        color: var(--gold);
+      }
+
+      .hair-top {
+        border-top: 1px solid oklch(0.692 0.082 75 / 0.22);
+      }
+
+      /* ─── Expanding-panel gallery: 3 photos, hover-grows on desktop.
+            Driven by flex-grow rather than width so widths stay fluid. */
+      .gallery-row {
+        display: flex;
+        gap: 10px;
+        width: 100%;
+        height: 280px;
+      }
+      @media (min-width: 640px) {
+        .gallery-row {
+          height: 360px;
+          gap: 12px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .gallery-row {
+          height: 460px;
+          gap: 14px;
+        }
+      }
+      .gallery-row .panel {
+        position: relative;
+        flex: 1 1 0;
+        min-width: 0;
+        overflow: hidden;
+        border-radius: 4px;
+        border: 1px solid oklch(0.692 0.082 75 / 0.18);
+        background: var(--carbon);
+        transition: flex-grow 700ms var(--ease-q);
+      }
+      .gallery-row .panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        filter: saturate(0.92) contrast(1.04) brightness(0.86);
+        transition:
+          filter 700ms var(--ease-q),
+          transform 900ms var(--ease-q);
+      }
+      .gallery-row .panel::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 55%,
+          oklch(0.165 0.013 50 / 0.55) 100%
+        );
+        pointer-events: none;
+      }
+      @media (hover: hover) and (min-width: 768px) {
+        .gallery-row:hover .panel {
+          flex-grow: 1;
+        }
+        .gallery-row .panel:hover {
+          flex-grow: 3;
+        }
+        .gallery-row .panel:hover img {
+          filter: saturate(1) contrast(1.04) brightness(0.94);
+          transform: scale(1.02);
+        }
+      }
+
+      /* ─── Benefits grid: bordered cells, dividers between, like an editorial
+            specimen sheet. Borders are gold-soft hairlines so it reads as
+            inlay rather than UI chrome. */
+      .bench {
+        --hair: oklch(0.692 0.082 75 / 0.22);
+        display: grid;
+        grid-template-columns: 1fr;
+        border: 1px solid var(--hair);
+        background: oklch(0.165 0.013 50 / 0.55);
+        backdrop-filter: blur(2px);
+      }
+      .bench > .cell {
+        padding: 28px 26px;
+        border-top: 1px solid var(--hair);
+      }
+      .bench > .cell:first-child {
+        border-top: 0;
+      }
+      @media (min-width: 640px) {
+        .bench {
+          grid-template-columns: 1fr 1fr;
+        }
+        .bench > .cell {
+          padding: 32px 30px;
+          border-top: 1px solid var(--hair);
+          border-left: 1px solid var(--hair);
+        }
+        .bench > .cell:nth-child(-n + 2) {
+          border-top: 0;
+        }
+        .bench > .cell:nth-child(odd) {
+          border-left: 0;
+        }
+      }
+      @media (min-width: 1024px) {
+        .bench {
+          grid-template-columns: 1fr 1fr 1fr;
+        }
+        .bench > .cell {
+          padding: 36px 32px;
+        }
+        .bench > .cell {
+          border-top: 1px solid var(--hair);
+          border-left: 1px solid var(--hair);
+        }
+        .bench > .cell:nth-child(-n + 3) {
+          border-top: 0;
+        }
+        .bench > .cell:nth-child(odd) {
+          border-left: 1px solid var(--hair);
+        }
+        .bench > .cell:nth-child(3n + 1) {
+          border-left: 0;
+        }
+      }
+
+      .cell .ico {
+        width: 22px;
+        height: 22px;
+        color: var(--gold);
+        flex: none;
+        stroke-width: 1.25;
+      }
+      .cell h3 {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-size: 1.0625rem;
+        letter-spacing: -0.012em;
+        line-height: 1.25;
+        color: var(--parchment);
+      }
+      .cell p {
+        font-size: 0.875rem;
+        line-height: 1.62;
+        color: oklch(0.892 0.024 81 / 0.78);
+      }
+      .cell .index {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-style: italic;
+        font-size: 0.75rem;
+        color: oklch(0.692 0.082 75 / 0.7);
+        letter-spacing: 0.02em;
+      }
+
+      /* Rise-in on load */
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .rise {
+        animation: rise 900ms var(--ease-q) both;
+      }
+      .rise-1 {
+        animation-delay: 60ms;
+      }
+      .rise-2 {
+        animation-delay: 180ms;
+      }
+      .rise-3 {
+        animation-delay: 320ms;
+      }
+      .rise-4 {
+        animation-delay: 460ms;
+      }
+      .rise-5 {
+        animation-delay: 600ms;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rise {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-ink text-parchment font-sans">
+    <!-- ────────────  HEADER  ──────────── -->
+    <header
+      id="site-header"
+      class="sticky top-0 z-40 bg-ink/95 supports-[backdrop-filter]:bg-ink/85 supports-[backdrop-filter]:backdrop-blur-sm border-b border-rule/60"
+    >
+      <div class="container-tight">
+        <div
+          class="header-inner h-[78px] flex items-center justify-between gap-6"
+        >
+          <a
+            href="index.html"
+            class="flex items-baseline gap-3 shrink-0"
+            aria-label="Don Cubano Cigars, home"
+          >
+            <span class="serif text-[22px] tracking-[-0.018em]"
+              >Don Cubano</span
+            >
+            <span
+              class="text-[11px] tracking-[0.28em] uppercase text-dust hidden sm:inline"
+              >Cigars</span
+            >
+          </a>
+          <nav
+            class="hidden lg:flex items-center gap-9 text-[13.5px] text-parchment/90"
+            aria-label="Primary"
+          >
+            <a href="index.html#house" class="nav-link">About Us</a>
+            <a href="index.html#casaberro" class="nav-link">Casa Berro</a>
+            <a href="blend-your-own.html" class="nav-link" aria-current="page"
+              >Blend Your Own</a
+            >
+            <a href="retailers.html" class="nav-link">Our Retailers</a>
+          </nav>
+          <a
+            href="index.html#contact"
+            class="btn-line text-[11px] py-3 hidden sm:inline-flex"
+            >Open an account</a
+          >
+        </div>
+      </div>
+      <nav
+        class="lg:hidden border-t border-rule/50 bg-ink"
+        aria-label="Primary navigation, mobile"
+      >
+        <ul
+          class="container-tight flex items-stretch justify-between text-[12.5px] text-parchment/85"
+        >
+          <li class="flex-1">
+            <a
+              href="index.html#house"
+              class="nav-link block text-center !py-3 min-h-[44px]"
+              >About Us</a
+            >
+          </li>
+          <li class="flex-1 border-x border-rule/40">
+            <a
+              href="blend-your-own.html"
+              class="nav-link block text-center !py-3 min-h-[44px]"
+              aria-current="page"
+              >Blend Your Own</a
+            >
+          </li>
+          <li class="flex-1">
+            <a
+              href="index.html#contact"
+              class="nav-link block text-center !py-3 min-h-[44px]"
+              >Contact</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- ════════════════  BLEND YOUR OWN · single section  ════════════════ -->
+      <section class="relative overflow-hidden">
+        <!-- Full-bleed background, same overlay approach as the index hero -->
+        <img
+          src="brand_assets/21.jpeg"
+          alt=""
+          aria-hidden="true"
+          class="absolute inset-0 w-full h-full object-cover"
+          style="filter: saturate(0.86) contrast(1.04) brightness(0.62)"
+          decoding="async"
+          fetchpriority="high"
+        />
+
+        <!-- Overlay: radial center darken + top/bottom fade to ink -->
+        <div
+          class="absolute inset-0 pointer-events-none"
+          style="
+            background:
+              radial-gradient(
+                ellipse at center,
+                oklch(0.165 0.013 50 / 0.36) 0%,
+                oklch(0.165 0.013 50 / 0.66) 60%,
+                oklch(0.165 0.013 50 / 0.82) 100%
+              ),
+              linear-gradient(
+                180deg,
+                var(--ink) 0%,
+                transparent 12%,
+                transparent 78%,
+                var(--ink) 100%
+              );
+            z-index: 1;
+          "
+        ></div>
+
+        <div class="container-tight relative" style="z-index: 2">
+          <div
+            class="pt-10 sm:pt-12 lg:pt-16 pb-20 sm:pb-24 lg:pb-32 max-w-[1080px] mx-auto"
+          >
+            <!-- Eyebrow -->
+            <div
+              class="rise rise-1 flex items-center justify-center gap-3 eyebrow"
+            >
+              <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+              <span>Private Label</span>
+              <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+            </div>
+
+            <!-- Headline -->
+            <h1
+              class="rise rise-2 h-display h-display-tight disp-h2 text-center mt-7 max-w-[22ch] mx-auto"
+            >
+              Blend
+              <span class="serif-i text-gold">Your Own</span>, From Leaf to
+              Label.
+            </h1>
+
+            <!-- Lede -->
+            <p
+              class="rise rise-3 mt-7 lg:mt-9 text-[15px] sm:text-[16.5px] leading-[1.78] text-parchment/85 max-w-[58ch] mx-auto text-center"
+            >
+              Build a cigar to your specification. Choose the tobacco blend and
+              wrapper, set the vitola and ring gauge, then shape the brand —
+              bands, rings, labels, and packaging. We guide every step, from
+              first concept through sampling to final production.
+            </p>
+
+            <!-- ─── Benefits grid (6 cells) ───────────────────────────── -->
+            <div class="rise rise-4 mt-12 lg:mt-16">
+              <div class="bench">
+                <!-- 01 · Blends -->
+                <div class="cell">
+                  <div class="flex items-start gap-3">
+                    <!-- leaf -->
+                    <svg
+                      class="ico mt-[3px]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M2 21c0-3 1.85-5.36 5.08-6"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-3">
+                        <span class="index">01</span>
+                        <h3>Tobacco Blends</h3>
+                      </div>
+                      <p>
+                        A working library of Nicaraguan, Dominican, and Honduran
+                        tobacco — selected for body, profile, and burn.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 02 · Wrappers -->
+                <div class="cell">
+                  <div class="flex items-start gap-3">
+                    <!-- layers -->
+                    <svg
+                      class="ico mt-[3px]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="m12 2 9 5-9 5-9-5 9-5Z"
+                        stroke-linejoin="round"
+                      />
+                      <path d="m3 12 9 5 9-5" stroke-linejoin="round" />
+                      <path d="m3 17 9 5 9-5" stroke-linejoin="round" />
+                    </svg>
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-3">
+                        <span class="index">02</span>
+                        <h3>Wrapper Options</h3>
+                      </div>
+                      <p>
+                        Habano, Connecticut, Maduro, Sumatra, San Andrés —
+                        chosen to set the cigar's character.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 03 · Vitolas -->
+                <div class="cell">
+                  <div class="flex items-start gap-3">
+                    <!-- ruler -->
+                    <svg
+                      class="ico mt-[3px]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M21.3 8.7 8.7 21.3a1 1 0 0 1-1.4 0L2.7 16.7a1 1 0 0 1 0-1.4L15.3 2.7a1 1 0 0 1 1.4 0l4.6 4.6a1 1 0 0 1 0 1.4Z"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="m7.5 10.5 2 2M10.5 7.5l2 2M13.5 4.5l2 2M4.5 13.5l2 2"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-3">
+                        <span class="index">03</span>
+                        <h3>Vitolas</h3>
+                      </div>
+                      <p>
+                        Robusto to Lancero, parejo or figurado, ring gauges from
+                        32 to 70. We help you choose what suits the blend.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 04 · Bands & packaging -->
+                <div class="cell">
+                  <div class="flex items-start gap-3">
+                    <!-- seal -->
+                    <svg
+                      class="ico mt-[3px]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4Z"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="m9 12 2 2 4-4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-3">
+                        <span class="index">04</span>
+                        <h3>Bands &amp; Packaging</h3>
+                      </div>
+                      <p>
+                        Cigar bands, foot rings, labels, boxes — designed with
+                        you.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 05 · No MOQ -->
+                <div class="cell">
+                  <div class="flex items-start gap-3">
+                    <!-- infinity -->
+                    <svg
+                      class="ico mt-[3px]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M18.18 7.5a4.5 4.5 0 1 0 0 9c-2.04 0-3.51-1.5-5.18-3.5L8.32 8.5c-1.67-2-3.14-3.5-5.18-3.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                      <path
+                        d="M5.82 16.5a4.5 4.5 0 1 0 0-9"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-3">
+                        <span class="index">05</span>
+                        <h3>No Minimum Order</h3>
+                      </div>
+                      <p>
+                        No minimums. Whether you need twenty cigars or twenty
+                        thousand, every shop and emerging brand gets the same
+                        attention.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 06 · End-to-end guidance -->
+                <div class="cell">
+                  <div class="flex items-start gap-3">
+                    <!-- compass -->
+                    <svg
+                      class="ico mt-[3px]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <circle cx="12" cy="12" r="9.25" />
+                      <path
+                        d="m15.5 8.5-2 5.5-5.5 2 2-5.5 5.5-2Z"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <div class="space-y-1.5">
+                      <div class="flex items-center gap-3">
+                        <span class="index">06</span>
+                        <h3>Guidance, End To End</h3>
+                      </div>
+                      <p>
+                        From the first concept call through samples, revisions,
+                        and the production run — one team, start to finish.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA row -->
+            <div
+              class="rise rise-5 mt-10 lg:mt-14 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+            >
+              <a href="#" class="btn-solid"
+                >Start a Blend
+                <svg
+                  width="14"
+                  height="10"
+                  viewBox="0 0 14 10"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 5h12M9 1l4 4-4 4"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="square"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Footnote -->
+            <p
+              class="rise rise-5 mt-8 text-center text-[12.5px] tracking-[0.04em] text-parchment/55"
+            >
+              <span class="serif-i text-gold/80">Hand-rolled in Estelí.</span>
+              Family-owned wholesale, Canadian, since
+              <span class="num">2008</span>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ════════════════  GALLERY · 3 panels  ════════════════ -->
+      <section class="bg-ink pt-2 pb-16 sm:pb-20 lg:pb-28">
+        <div class="container-tight">
+          <div class="gallery-row">
+            <div class="panel">
+              <img
+                src="brand_assets/18.jpeg"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="panel">
+              <img
+                src="brand_assets/22.png"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="panel">
+              <img
+                src="brand_assets/23.jpg"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ────────────  FOOTER  ──────────── -->
+    <footer class="border-t border-rule/60 pb-6 pt-16 lg:pb-8 lg:pt-24">
+      <div class="container-tight">
+        <!-- Top row: brand mark + social -->
+        <div class="md:flex md:items-start md:justify-between">
+          <a
+            href="index.html"
+            class="inline-flex items-center gap-x-3 group"
+            aria-label="Don Cubano Cigars"
+          >
+            <span
+              class="inline-flex items-center justify-center h-10 w-10 rounded-full border border-gold/45 text-gold transition-colors duration-200 group-hover:border-gold group-hover:text-gold-soft"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 40 40"
+                class="h-[22px] w-[22px]"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 4 L34 12 L34 28 L20 36 L6 28 L6 12 Z" />
+                <path
+                  d="M20 11 L27 15 L27 25 L20 29 L13 25 L13 15 Z"
+                  stroke-width="0.7"
+                  opacity="0.7"
+                />
+                <circle cx="20" cy="20" r="1.4" fill="currentColor" />
+              </svg>
+            </span>
+            <span class="flex items-baseline gap-3">
+              <span class="serif text-[26px] tracking-[-0.018em] leading-none"
+                >Don Cubano</span
+              >
+              <span class="text-[11px] tracking-[0.28em] uppercase text-dust"
+                >Cigars</span
+              >
+            </span>
+          </a>
+          <ul class="flex list-none mt-8 md:mt-0 space-x-3">
+            <li>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-[18px] w-[18px]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:trade@doncubano.ca"
+                aria-label="Email trade desk"
+                class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  class="h-[18px] w-[18px]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m3 7 9 6 9-6" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Bottom: copyright + main nav + legal -->
+        <div
+          class="mt-10 pt-2 md:mt-8 md:pt-2 lg:grid lg:grid-cols-10 lg:gap-x-8"
+        >
+          <nav class="lg:mt-0 lg:col-[4/11]" aria-label="Footer navigation">
+            <ul class="list-none flex flex-wrap -my-1 -mx-3 lg:justify-end">
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="index.html#house"
+                  class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                  >About Us</a
+                >
+              </li>
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="index.html#casaberro"
+                  class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                  >Casa Berro</a
+                >
+              </li>
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="blend-your-own.html"
+                  class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                  aria-current="page"
+                  >Blend Your Own</a
+                >
+              </li>
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="retailers.html"
+                  class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                  >Our Retailers</a
+                >
+              </li>
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="index.html#contact"
+                  class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="mt-6 lg:mt-3 lg:col-[4/11]">
+            <ul class="list-none flex flex-wrap -my-1 -mx-3 lg:justify-end">
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="#"
+                  class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
+                  >Privacy</a
+                >
+              </li>
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="#"
+                  class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
+                  >Terms</a
+                >
+              </li>
+              <li class="my-1 mx-3 shrink-0">
+                <a
+                  href="#"
+                  class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
+                  >Trade Policy</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div
+            class="mt-8 text-[12.5px] leading-[1.7] text-dust lg:mt-0 lg:row-[1/3] lg:col-[1/4]"
+          >
+            <div>© 2026 Don Cubano Cigars Co.</div>
+            <div class="mt-1 tracking-[0.04em]">
+              Trade only · Adults of legal smoking age
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-rule/60 mt-10 md:mt-12"></div>
+    </footer>
+  </body>
+</html>

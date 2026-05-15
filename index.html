@@ -1,0 +1,2867 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Don Cubano Cigars, Wholesale for Canadian Retailers</title>
+    <meta
+      name="description"
+      content="A family-owned Canadian wholesale cigar house, supplying independent retailers since 2008. Hand-rolled in Estelí, stocked in Windsor, Ontario."
+    />
+    <meta name="theme-color" content="#1F1611" />
+    <meta property="og:title" content="Don Cubano Cigars" />
+    <meta
+      property="og:description"
+      content="A working wholesale cigar house. Family-owned, Canadian, since 2008."
+    />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Hanken+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "oklch(0.165 0.013 50)",
+              "ink-2": "oklch(0.195 0.013 50)",
+              carbon: "oklch(0.220 0.011 47)",
+              "carbon-2": "oklch(0.260 0.011 47)",
+              gold: "oklch(0.692 0.082 75)",
+              "gold-soft": "oklch(0.752 0.060 78)",
+              parchment: "oklch(0.892 0.024 81)",
+              dust: "oklch(0.685 0.005 60)",
+              sage: "oklch(0.355 0.025 110)",
+              rule: "oklch(0.265 0.014 45)",
+              ember: "oklch(0.572 0.144 47)",
+              /* Casa Berro line identities, drawn from the named band colors */
+              "line-ivory":
+                "oklch(0.876 0.040 88)" /* warm pale champagne, distinct from parchment */,
+              "line-silver":
+                "oklch(0.760 0.012 230)" /* brushed silver, faint cool undertone */,
+              "line-azul":
+                "oklch(0.560 0.094 235)" /* marine ink, not indigo */,
+              "line-rojo":
+                "oklch(0.510 0.135 25)" /* dried claret, not retail red */,
+              "line-oro":
+                "oklch(0.642 0.118 65)" /* aged brass, distinct from house gold */,
+              /* Origin nation markers, leaf-region tones */
+              "origin-ni": "oklch(0.560 0.140 38)" /* Nicaragua, red clay */,
+              "origin-do":
+                "oklch(0.620 0.075 130)" /* Dominican, Cibao leaf green */,
+              "origin-hn": "oklch(0.490 0.058 60)" /* Honduras, dark cocoa */,
+              "origin-cr":
+                "oklch(0.490 0.025 220)" /* Costa Rica, volcanic stone */,
+            },
+            fontFamily: {
+              serif: ["Spectral", "Libre Baskerville", "Georgia", "serif"],
+              sans: [
+                "Hanken Grotesk",
+                "system-ui",
+                "-apple-system",
+                "sans-serif",
+              ],
+            },
+            letterSpacing: {
+              eye: "0.22em",
+              "eye-tight": "0.16em",
+              "eye-wide": "0.34em",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --ink: oklch(0.165 0.013 50);
+        --carbon: oklch(0.22 0.011 47);
+        --gold: oklch(0.692 0.082 75);
+        --parchment: oklch(0.892 0.024 81);
+        --dust: oklch(0.685 0.005 60);
+        --rule-line: oklch(0.265 0.014 45);
+        --ease-q: cubic-bezier(0.22, 1, 0.36, 1);
+        --ease-x: cubic-bezier(0.16, 1, 0.3, 1);
+
+        /* Fluid editorial display scale, ratio ~1.27 between steps.
+       Each clamp anchors a min size on small viewports and a max size on wide screens,
+       with the middle term scaling smoothly across the band. */
+        --disp-hero: clamp(2.625rem, 0.55rem + 7.5vw, 6rem); /*  42 → 96 */
+        --disp-h1: clamp(2.5rem, 1.05rem + 5vw, 4.5rem); /*  40 → 72 */
+        --disp-h2: clamp(2.25rem, 1.2rem + 4.5vw, 4.25rem); /*  36 → 68 */
+        --disp-h2-sm: clamp(2rem, 1.2rem + 3.5vw, 3.625rem); /*  32 → 58 */
+        --disp-h3: clamp(1.875rem, 1.1rem + 3vw, 2.75rem); /*  30 → 44 */
+        --disp-h3-sm: clamp(1.625rem, 1.05rem + 2.4vw, 2.25rem); /*  26 → 36 */
+        --disp-h4: clamp(1.5rem, 1rem + 1.4vw, 2rem); /*  24 → 32 */
+        --disp-quote: clamp(1.625rem, 0.55rem + 4.2vw, 3.25rem); /*  26 → 52 */
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+      html,
+      body {
+        background: var(--ink);
+      }
+      body {
+        font-family:
+          "Hanken Grotesk",
+          system-ui,
+          -apple-system,
+          sans-serif;
+        color: var(--parchment);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+        font-weight: 400;
+        line-height: 1.65;
+        /* Kerning, common ligatures, contextual alternates on by default for body sans */
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "calt" 1;
+        font-kerning: normal;
+      }
+      /* Body paragraphs benefit from pretty wrapping on modern browsers (avoids orphans);
+     headings get balance so 2–3 line titles break evenly. */
+      p {
+        text-wrap: pretty;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--ink);
+      }
+
+      /* ----- Typography ----- */
+      /* Spectral roman, body running text size. Oldstyle figures sit on the baseline
+     like lowercase letters and read as editorial rather than tabular. */
+      .serif {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.012em;
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "calt" 1,
+          "onum" 1;
+        font-variant-numeric: oldstyle-nums proportional-nums;
+      }
+      .serif-i {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-style: italic;
+        font-weight: 400;
+        letter-spacing: -0.006em;
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "calt" 1,
+          "dlig" 1;
+      }
+      /* Display roman. Lining figures so '2008', '2026' sit at cap height.
+     Discretionary ligatures on; balance wrapping for 2–3 line titles. */
+      .h-display {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-weight: 400;
+        letter-spacing: -0.022em;
+        line-height: 1.04;
+        font-feature-settings:
+          "kern" 1,
+          "liga" 1,
+          "dlig" 1,
+          "calt" 1;
+        font-variant-numeric: lining-nums proportional-nums;
+        text-wrap: balance;
+      }
+      .h-display-tight {
+        letter-spacing: -0.032em;
+        line-height: 1;
+      }
+
+      /* Fluid display sizes. Apply on top of .h-display (or on .serif-i for italic display). */
+      .disp-hero {
+        font-size: var(--disp-hero);
+        letter-spacing: -0.034em;
+        line-height: 1;
+      }
+      .disp-h1 {
+        font-size: var(--disp-h1);
+        letter-spacing: -0.03em;
+        line-height: 1.02;
+      }
+      .disp-h2 {
+        font-size: var(--disp-h2);
+        letter-spacing: -0.028em;
+        line-height: 1.04;
+      }
+      .disp-h2-sm {
+        font-size: var(--disp-h2-sm);
+        letter-spacing: -0.024em;
+        line-height: 1.06;
+      }
+      .disp-h3 {
+        font-size: var(--disp-h3);
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+      }
+      .disp-h3-sm {
+        font-size: var(--disp-h3-sm);
+        letter-spacing: -0.018em;
+        line-height: 1.12;
+      }
+      .disp-h4 {
+        font-size: var(--disp-h4);
+        letter-spacing: -0.014em;
+        line-height: 1.18;
+      }
+      /* Italic pull quote, slightly looser leading and a touch more letterspace */
+      .disp-quote {
+        font-size: var(--disp-quote);
+        letter-spacing: -0.014em;
+        line-height: 1.16;
+      }
+
+      .eyebrow {
+        font-size: 0.6875rem; /* 11px, pinned for utility-rail rhythm */
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--dust);
+        font-weight: 500;
+        font-feature-settings:
+          "kern" 1,
+          "tnum" 1,
+          "lnum" 1;
+      }
+      .eyebrow-thin {
+        font-size: 0.6875rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: var(--dust);
+        font-weight: 500;
+        font-feature-settings:
+          "kern" 1,
+          "tnum" 1,
+          "lnum" 1;
+      }
+      .num {
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-style: italic;
+        color: var(--gold);
+        font-weight: 400;
+        font-feature-settings:
+          "kern" 1,
+          "lnum" 1,
+          "tnum" 1;
+        font-variant-numeric: lining-nums tabular-nums;
+      }
+      .caption {
+        font-size: 0.8125rem; /* 13px */
+        line-height: 1.62;
+        color: oklch(0.892 0.024 81 / 0.78);
+        text-wrap: pretty;
+      }
+      .vlabel {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        font-size: 0.6875rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--dust);
+        font-weight: 500;
+        font-feature-settings: "kern" 1;
+      }
+
+      /* Numeric utilities: tabular figures align in columns, oldstyle for editorial body */
+      .tnum {
+        font-variant-numeric: tabular-nums lining-nums;
+        font-feature-settings:
+          "tnum" 1,
+          "lnum" 1;
+      }
+      .onum {
+        font-variant-numeric: oldstyle-nums proportional-nums;
+        font-feature-settings: "onum" 1;
+      }
+
+      /* Pull-quote hanging punctuation. Modern browsers honor hanging-punctuation;
+     for the rest, a small negative text-indent fakes it on the opening curly quote. */
+      .hang-quote {
+        hanging-punctuation: first last;
+      }
+      @supports not (hanging-punctuation: first) {
+        .hang-quote {
+          text-indent: -0.42em;
+        }
+      }
+
+      /* ----- Hairlines ----- */
+      .hair-top {
+        border-top: 1px solid oklch(0.692 0.082 75 / 0.22);
+      }
+      .hair-bottom {
+        border-bottom: 1px solid oklch(0.692 0.082 75 / 0.22);
+      }
+      .hair-soft {
+        border-top: 1px solid oklch(0.892 0.024 81 / 0.1);
+      }
+      .hair-soft-b {
+        border-bottom: 1px solid oklch(0.892 0.024 81 / 0.1);
+      }
+      .vrule {
+        border-left: 1px solid oklch(0.892 0.024 81 / 0.1);
+      }
+
+      /* ----- Buttons ----- */
+      .btn-line,
+      .btn-solid {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        padding: 15px 24px;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-weight: 500;
+        border-radius: 2px;
+        transition:
+          background-color 320ms var(--ease-q),
+          border-color 320ms var(--ease-q),
+          color 320ms var(--ease-q);
+        cursor: pointer;
+      }
+      .btn-line {
+        border: 1px solid oklch(0.692 0.082 75 / 0.55);
+        background: transparent;
+        color: var(--parchment);
+      }
+      .btn-line:hover {
+        background: oklch(0.692 0.082 75 / 0.1);
+        border-color: var(--gold);
+      }
+      .btn-line:focus-visible {
+        outline: none;
+        border-color: var(--gold);
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+
+      .btn-solid {
+        border: 1px solid var(--gold);
+        background: var(--gold);
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .btn-solid:hover {
+        background: oklch(0.752 0.082 75);
+        border-color: oklch(0.752 0.082 75);
+      }
+      .btn-solid:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .btn-solid:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
+      }
+
+      /* ----- Underlined Links ----- */
+      .ulink {
+        color: var(--parchment);
+        border-bottom: 1px solid oklch(0.692 0.082 75 / 0.55);
+        padding-bottom: 1px;
+        transition:
+          color 220ms var(--ease-q),
+          border-color 220ms var(--ease-q);
+      }
+      .ulink:hover,
+      .ulink:focus-visible {
+        color: var(--gold);
+        border-color: var(--gold);
+        outline: none;
+      }
+      .nav-link {
+        transition: color 220ms var(--ease-q);
+        position: relative;
+        padding: 8px 2px;
+        display: inline-block;
+      }
+      .nav-link:hover,
+      .nav-link:focus-visible {
+        color: var(--gold);
+        outline: none;
+      }
+      .nav-link:focus-visible {
+        text-decoration: underline;
+        text-underline-offset: 6px;
+        text-decoration-color: var(--gold);
+      }
+
+      /* ----- Image plates ----- */
+      .plate {
+        position: relative;
+        overflow: hidden;
+        background: var(--carbon);
+        isolation: isolate;
+      }
+      .plate img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.92) contrast(1.02);
+        transition:
+          transform 1100ms var(--ease-x),
+          filter 600ms var(--ease-q);
+      }
+      .plate:hover img,
+      .plate:focus-within img {
+        transform: scale(1.035);
+        filter: saturate(1) contrast(1.05);
+      }
+      .plate::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 60%,
+          oklch(0.165 0.013 50 / 0.32) 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+      .plate-flat::after {
+        display: none;
+      }
+
+      /* ----- Form ----- */
+      .field-row {
+        position: relative;
+      }
+      .field {
+        width: 100%;
+        background: transparent;
+        border: 0;
+        border-bottom: 1px solid oklch(0.265 0.014 45);
+        padding: 12px 0 10px;
+        color: var(--parchment);
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 15px;
+        outline: none;
+        transition: border-color 240ms var(--ease-q);
+      }
+      .field:focus,
+      .field:focus-visible {
+        border-color: var(--gold);
+      }
+      .field::placeholder {
+        color: oklch(0.685 0.005 60 / 0.55);
+      }
+      .field-row.has-error .field {
+        border-color: var(--ember);
+      }
+      .field-error {
+        display: none;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        color: var(--ember);
+        margin-top: 8px;
+      }
+      .field-row.has-error .field-error {
+        display: block;
+      }
+
+      select.field {
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1.5L6 6.5L11 1.5' stroke='%23B89A5D' stroke-width='1.2' stroke-linecap='square'/></svg>");
+        background-repeat: no-repeat;
+        background-position: right 4px center;
+        background-size: 12px 8px;
+        padding-right: 26px;
+      }
+      select.field option {
+        background: var(--ink);
+        color: var(--parchment);
+      }
+
+      /* ----- Strength scale (color-blind safe via fill+position) ----- */
+      /* The dot count and position carry strength meaning; color is decorative,
+     scoped to each Casa Berro line via the --line-color custom property. */
+      .strength {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+      }
+      .strength span {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: oklch(0.892 0.024 81 / 0.22);
+        display: inline-block;
+      }
+      .strength span.on {
+        background: var(--line-color, var(--gold));
+      }
+
+      /* ----- Per-line color scoping ----- */
+      /* Each Casa Berro article carries its named band color as --line-color.
+     Scoped to the title italic, the strength dots, and the plate-tag hairline,
+     so the editorial color cue is tied to the actual artifact, not decoration. */
+      .cb-line {
+        --line-color: var(--gold);
+      }
+      .cb-line[data-line="white"] {
+        --line-color: oklch(0.95 0.012 88);
+      }
+      .cb-line[data-line="red"] {
+        --line-color: oklch(0.56 0.15 25);
+      }
+      .cb-line[data-line="blue"] {
+        --line-color: oklch(0.58 0.105 235);
+      }
+      .cb-line[data-line="black"] {
+        --line-color: oklch(0.4 0.018 50);
+      }
+      .cb-line .cb-name {
+        color: var(--line-color);
+        transition: color 220ms var(--ease-q);
+      }
+      .cb-line .plate-tag {
+        border-color: var(--line-color);
+        border-color: color-mix(in oklch, var(--line-color) 70%, transparent);
+      }
+      /* Subtle hover: the band-color tint deepens on the plate caption only,
+     not the image, preserving the editorial flatness. */
+      .cb-line .plate:hover ~ * .plate-tag,
+      .cb-line .plate:focus-within .plate-tag {
+        border-color: var(--line-color);
+      }
+
+      /* Origin nation marker square, paired with the numeral. Decorative cue,
+     never the only carrier of meaning (the country name is right next to it). */
+      .origin-mark {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background: var(--origin-color, var(--gold));
+        transform: translateY(-1px);
+      }
+
+      /* ----- Reveal animations ----- */
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 14px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes drift {
+        from {
+          opacity: 0;
+          transform: scale(1.04);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .rise {
+        animation: rise 900ms var(--ease-x) both;
+      }
+      .rise-1 {
+        animation-delay: 80ms;
+      }
+      .rise-2 {
+        animation-delay: 180ms;
+      }
+      .rise-3 {
+        animation-delay: 280ms;
+      }
+      .rise-4 {
+        animation-delay: 380ms;
+      }
+      .rise-5 {
+        animation-delay: 480ms;
+      }
+      .drift {
+        animation: drift 1400ms var(--ease-x) both;
+      }
+
+      /* ----- Header scroll compression ----- */
+      header.compressed {
+        padding-top: 4px;
+        padding-bottom: 4px;
+      }
+      header.compressed .header-inner {
+        height: 60px;
+      }
+      .header-inner {
+        transition: height 320ms var(--ease-q);
+      }
+
+      /* ----- Hero bleed image (desktop) ----- */
+      .hero-bleed {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 56vw;
+        max-width: 920px;
+        overflow: hidden;
+      }
+      .hero-bleed img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.92) contrast(1.04) brightness(0.96);
+      }
+      .hero-bleed::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          oklch(0.165 0.013 50 / 0.55) 0%,
+          transparent 35%
+        );
+        z-index: 1;
+      }
+      .hero-bleed::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 70%,
+          oklch(0.165 0.013 50 / 0.45) 100%
+        );
+        z-index: 1;
+      }
+
+      /* ----- House intro: tobacco-field backdrop ----- */
+      .house-intro > img {
+        filter: saturate(0.78) contrast(1.05) brightness(0.62);
+      }
+      /* Soft top/bottom fade to ink so the band sits flush with adjacent sections,
+     plus an even darken pass so body copy clears WCAG against the foliage. */
+      .house-intro::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at center,
+            oklch(0.165 0.013 50 / 0.46) 0%,
+            oklch(0.165 0.013 50 / 0.7) 65%,
+            oklch(0.165 0.013 50 / 0.82) 100%
+          ),
+          linear-gradient(
+            180deg,
+            var(--ink) 0%,
+            transparent 18%,
+            transparent 82%,
+            var(--ink) 100%
+          );
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* ----- Age Gate ----- */
+      #age-gate,
+      #age-decline {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        background: var(--ink);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      #age-gate .ag-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        flex: 1;
+        min-height: 100%;
+      }
+      @media (min-width: 900px) {
+        #age-gate .ag-grid {
+          grid-template-columns: 1.05fr 1fr;
+        }
+      }
+      .ag-image {
+        position: relative;
+        background: var(--carbon);
+        min-height: 240px;
+        overflow: hidden;
+      }
+      .ag-image img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.85) contrast(1.05) brightness(0.78);
+      }
+      .ag-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            180deg,
+            oklch(0.165 0.013 50 / 0.2) 0%,
+            oklch(0.165 0.013 50 / 0.55) 100%
+          ),
+          radial-gradient(
+            80% 60% at 70% 30%,
+            oklch(0.165 0.013 50 / 0) 0%,
+            oklch(0.165 0.013 50 / 0.5) 100%
+          );
+      }
+      .ag-image .vlabel {
+        position: absolute;
+        left: 18px;
+        top: 22px;
+        z-index: 2;
+        color: oklch(0.892 0.024 81 / 0.75);
+      }
+      .ag-image .ag-image-caption {
+        position: absolute;
+        left: 24px;
+        bottom: 22px;
+        z-index: 2;
+        font-size: 11px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: oklch(0.892 0.024 81 / 0.75);
+      }
+      .ag-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(28px, 5vw, 60px);
+        gap: 32px;
+      }
+
+      /* ----- Reduced motion ----- */
+      @media (prefers-reduced-motion: reduce) {
+        .rise,
+        .drift {
+          animation: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+        }
+        .plate img,
+        .plate:hover img {
+          transition: none !important;
+          transform: none !important;
+        }
+        .header-inner {
+          transition: none !important;
+        }
+        * {
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* ----- Print baseline ----- */
+      @media print {
+        #age-gate,
+        #age-decline,
+        header {
+          display: none !important;
+        }
+      }
+
+      /* ----- Layout helpers ----- */
+      .container-tight {
+        max-width: 1240px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+      @media (min-width: 1024px) {
+        .container-tight {
+          padding-inline: 40px;
+        }
+      }
+      .container-wide {
+        max-width: 1440px;
+        margin-inline: auto;
+        padding-inline: 24px;
+      }
+      @media (min-width: 1024px) {
+        .container-wide {
+          padding-inline: 40px;
+        }
+      }
+
+      /* ----- Pull quote ----- */
+      .pullquote {
+        background:
+          linear-gradient(
+            180deg,
+            oklch(0.165 0.013 50 / 0.86),
+            oklch(0.165 0.013 50 / 0.92)
+          ),
+          url("brand_assets/opt/12-1024.webp") center / cover no-repeat;
+      }
+
+      /* ----- Plate caption tag ----- */
+      .plate-tag {
+        position: absolute;
+        bottom: 18px;
+        left: 18px;
+        z-index: 2;
+        padding: 6px 10px;
+        background: oklch(0.165 0.013 50 / 0.78);
+        border: 1px solid oklch(0.692 0.082 75 / 0.45);
+        color: var(--parchment);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      /* Province caption strip (footer trade marks) */
+      .marks {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px 28px;
+      }
+      @media (min-width: 768px) {
+        .marks {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* Selection plate alternation */
+      .selplate {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 28px;
+        align-items: stretch;
+      }
+      @media (min-width: 1024px) {
+        .selplate {
+          grid-template-columns: 6fr 5fr;
+          gap: 56px;
+          align-items: center;
+        }
+        .selplate.reverse {
+          grid-template-columns: 5fr 6fr;
+        }
+        .selplate.reverse .selplate-image {
+          order: 2;
+        }
+        .selplate.reverse .selplate-text {
+          order: 1;
+        }
+      }
+      .selplate-image .plate {
+        aspect-ratio: 4 / 5;
+      }
+      @media (min-width: 1024px) {
+        .selplate-image .plate {
+          aspect-ratio: 16 / 11;
+        }
+      }
+      .selplate.full {
+        grid-template-columns: 1fr;
+      }
+      .selplate.full .selplate-image .plate {
+        aspect-ratio: 4 / 5;
+      }
+      @media (min-width: 1024px) {
+        .selplate.full .selplate-image .plate {
+          aspect-ratio: 21 / 9;
+        }
+      }
+
+      /* Form success panel */
+      .form-success {
+        border: 1px solid oklch(0.692 0.082 75 / 0.32);
+        padding: 36px 28px;
+        background: oklch(0.22 0.011 47 / 0.4);
+      }
+    </style>
+  </head>
+  <body class="bg-ink text-parchment font-sans">
+    <!-- ──────────────────────  AGE GATE  ────────────────────── -->
+    <div
+      id="age-gate"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="ag-title"
+      aria-describedby="ag-desc"
+    >
+      <div class="ag-grid">
+        <!-- Left: image plate -->
+        <div class="ag-image">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="
+                brand_assets/opt/13-640.webp   640w,
+                brand_assets/opt/13-1024.webp 1024w,
+                brand_assets/opt/13-1600.webp 1600w
+              "
+              sizes="(min-width: 900px) 50vw, 100vw"
+            />
+            <img
+              src="brand_assets/opt/13-1024.jpg"
+              srcset="
+                brand_assets/opt/13-640.jpg   640w,
+                brand_assets/opt/13-1024.jpg 1024w,
+                brand_assets/opt/13-1600.jpg 1600w
+              "
+              sizes="(min-width: 900px) 50vw, 100vw"
+              alt=""
+              aria-hidden="true"
+              width="1600"
+              height="2400"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+          <span class="vlabel" aria-hidden="true">Don Cubano · Trade Door</span>
+        </div>
+
+        <!-- Right: content -->
+        <div class="ag-content">
+          <header class="flex items-center justify-between">
+            <div class="flex items-baseline gap-3">
+              <span class="serif text-[22px] tracking-[-0.018em]"
+                >Don Cubano</span
+              >
+              <span class="text-[11px] tracking-[0.30em] uppercase text-dust"
+                >Cigars</span
+              >
+            </div>
+            <span
+              class="text-[11px] tracking-[0.24em] uppercase text-dust hidden sm:inline"
+              >Trade only</span
+            >
+          </header>
+
+          <div class="max-w-[480px]">
+            <div class="eyebrow mb-7">
+              <span class="text-gold">●</span
+              ><span class="ml-3">Age verification, Canada</span>
+            </div>
+
+            <h1 id="ag-title" class="h-display disp-h2-sm mb-7">
+              Before you enter, a quiet question.
+            </h1>
+
+            <p id="ag-desc" class="text-[15px] leading-[1.7] text-parchment/80">
+              Don Cubano supplies licensed Canadian cigar retailers. By
+              continuing, you confirm you are at or above the legal smoking age
+              in your province.
+            </p>
+
+            <form id="ag-form" class="mt-10" novalidate>
+              <label for="ag-province" class="eyebrow block mb-3"
+                >Your province</label
+              >
+              <select
+                id="ag-province"
+                name="province"
+                class="field"
+                required
+                aria-describedby="ag-province-error"
+              >
+                <option value="">Select province</option>
+                <option value="AB">Alberta (18)</option>
+                <option value="BC">British Columbia (19)</option>
+                <option value="MB">Manitoba (18)</option>
+                <option value="NB">New Brunswick (19)</option>
+                <option value="NL">Newfoundland and Labrador (19)</option>
+                <option value="NS">Nova Scotia (19)</option>
+                <option value="NT">Northwest Territories (18)</option>
+                <option value="NU">Nunavut (19)</option>
+                <option value="ON">Ontario (19)</option>
+                <option value="PE">Prince Edward Island (19)</option>
+                <option value="QC">Quebec (18)</option>
+                <option value="SK">Saskatchewan (18)</option>
+                <option value="YT">Yukon (19)</option>
+              </select>
+              <div
+                id="ag-province-error"
+                class="field-error"
+                aria-live="polite"
+              ></div>
+
+              <label class="flex items-start gap-3 mt-7 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="ag-confirm"
+                  class="mt-[5px] accent-[oklch(0.692_0.082_75)]"
+                  required
+                />
+                <span class="text-[13.5px] leading-[1.65] text-parchment/85">
+                  I am at or above the legal smoking age in my province.
+                </span>
+              </label>
+
+              <div
+                class="flex flex-col-reverse sm:flex-row sm:items-center gap-4 mt-10"
+              >
+                <button
+                  type="button"
+                  id="ag-decline"
+                  class="btn-line w-full sm:w-auto justify-center"
+                >
+                  Decline
+                </button>
+                <button
+                  type="submit"
+                  id="ag-submit"
+                  class="btn-solid flex-1 justify-center"
+                  disabled
+                >
+                  Confirm and enter
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <footer
+            class="text-[11.5px] tracking-[0.20em] uppercase text-dust hair-soft pt-5"
+          >
+            <span>Verification stored 30 days, this device only.</span>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- ──────────────────────  AGE DECLINE  ────────────────────── -->
+    <div
+      id="age-decline"
+      hidden
+      role="alertdialog"
+      aria-labelledby="ag-decline-title"
+    >
+      <div class="ag-grid">
+        <div class="ag-image">
+          <picture>
+            <source
+              type="image/webp"
+              srcset="
+                brand_assets/opt/16-640.webp   640w,
+                brand_assets/opt/16-1024.webp 1024w,
+                brand_assets/opt/16-1600.webp 1600w
+              "
+              sizes="(min-width: 900px) 50vw, 100vw"
+            />
+            <img
+              src="brand_assets/opt/16-1024.jpg"
+              srcset="
+                brand_assets/opt/16-640.jpg   640w,
+                brand_assets/opt/16-1024.jpg 1024w,
+                brand_assets/opt/16-1600.jpg 1600w
+              "
+              sizes="(min-width: 900px) 50vw, 100vw"
+              alt=""
+              aria-hidden="true"
+              width="1600"
+              height="2400"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+          <span class="vlabel" aria-hidden="true"
+            >Don Cubano · Closed Door</span
+          >
+        </div>
+        <div class="ag-content justify-center">
+          <div class="max-w-[460px]">
+            <div class="eyebrow mb-6">
+              <span class="text-gold">●</span
+              ><span class="ml-3">Trade only</span>
+            </div>
+            <h2 id="ag-decline-title" class="h-display disp-h3 mb-7">
+              Don Cubano supplies licensed retailers.
+            </h2>
+            <p class="text-[15px] leading-[1.75] text-parchment/80">
+              We are not the right destination today. If a province dropdown was
+              selected in error, the verification can be retried by refreshing
+              the page.
+            </p>
+            <p class="mt-9 text-[13px] tracking-[0.18em] uppercase text-dust">
+              Trade enquiries:
+              <a class="ulink !text-parchment" href="mailto:trade@doncubano.ca"
+                >trade@doncubano.ca</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════════════
+     SITE
+     ══════════════════════════════════════════════════════════ -->
+    <div id="site" hidden>
+      <!-- ────────────  HEADER  ──────────── -->
+      <header
+        id="site-header"
+        class="sticky top-0 z-40 bg-ink/95 supports-[backdrop-filter]:bg-ink/85 supports-[backdrop-filter]:backdrop-blur-sm border-b border-rule/60"
+      >
+        <div class="container-tight">
+          <div
+            class="header-inner h-[78px] flex items-center justify-between gap-6"
+          >
+            <a
+              href="#"
+              class="flex items-baseline gap-3 shrink-0"
+              aria-label="Don Cubano Cigars, home"
+            >
+              <span class="serif text-[22px] tracking-[-0.018em]"
+                >Don Cubano</span
+              >
+              <span
+                class="text-[11px] tracking-[0.28em] uppercase text-dust hidden sm:inline"
+                >Cigars</span
+              >
+            </a>
+            <nav
+              class="hidden lg:flex items-center gap-9 text-[13.5px] text-parchment/90"
+              aria-label="Primary"
+            >
+              <a href="#house" class="nav-link">About Us</a>
+              <a href="#casaberro" class="nav-link">Casa Berro</a>
+              <a href="blend-your-own.html" class="nav-link">Blend Your Own</a>
+              <a href="retailers.html" class="nav-link">Our Retailers</a>
+            </nav>
+            <a
+              href="#contact"
+              class="btn-line text-[11px] py-3 hidden sm:inline-flex"
+              >Open an account</a
+            >
+          </div>
+        </div>
+        <nav
+          class="lg:hidden border-t border-rule/50 bg-ink"
+          aria-label="Primary navigation, mobile"
+        >
+          <ul
+            class="container-tight flex items-stretch justify-between text-[12.5px] text-parchment/85"
+          >
+            <li class="flex-1">
+              <a
+                href="#house"
+                class="nav-link block text-center !py-3 min-h-[44px]"
+                >About Us</a
+              >
+            </li>
+            <li class="flex-1 border-x border-rule/40">
+              <a
+                href="#casaberro"
+                class="nav-link block text-center !py-3 min-h-[44px]"
+                >Casa Berro</a
+              >
+            </li>
+            <li class="flex-1">
+              <a
+                href="#contact"
+                class="nav-link block text-center !py-3 min-h-[44px]"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- ════════════════════════════════════════════════════════════
+       MAIN
+       ════════════════════════════════════════════════════════════ -->
+      <main id="main">
+        <!-- ════════════════  SECTION 1 · OPENING SPREAD  ════════════════ -->
+        <section class="relative overflow-hidden">
+          <!-- Full-bleed background image, same overlay approach as house-intro -->
+          <img
+            src="brand_assets/opt/13-1024.jpg"
+            srcset="
+              brand_assets/opt/13-640.jpg   640w,
+              brand_assets/opt/13-1024.jpg 1024w,
+              brand_assets/opt/13-1600.jpg 1600w
+            "
+            sizes="100vw"
+            alt=""
+            aria-hidden="true"
+            class="absolute inset-0 w-full h-full object-cover"
+            style="filter: saturate(0.85) contrast(1.04) brightness(0.72)"
+            width="1600"
+            height="2400"
+            decoding="async"
+            fetchpriority="high"
+          />
+
+          <!-- Overlay: radial center darken + top/bottom fade to ink, matching house-intro -->
+          <div
+            class="absolute inset-0 pointer-events-none"
+            style="
+              background:
+                radial-gradient(
+                  ellipse at center,
+                  oklch(0.165 0.013 50 / 0.38) 0%,
+                  oklch(0.165 0.013 50 / 0.62) 60%,
+                  oklch(0.165 0.013 50 / 0.78) 100%
+                ),
+                linear-gradient(
+                  180deg,
+                  var(--ink) 0%,
+                  transparent 14%,
+                  transparent 80%,
+                  var(--ink) 100%
+                );
+              z-index: 1;
+            "
+          ></div>
+
+          <div class="container-tight relative" style="z-index: 2">
+            <div
+              class="flex flex-col items-center text-center pt-20 sm:pt-28 lg:pt-36 pb-16 lg:pb-24"
+            >
+              <div
+                class="rise rise-1 inline-flex items-center gap-3 eyebrow mb-7"
+              >
+                <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+                <span>Wholesale · Canada · Since 2008</span>
+                <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+              </div>
+
+              <h1
+                class="rise rise-2 h-display h-display-tight disp-h2 max-w-[22ch]"
+              >
+                Don Cubano Cigars, a
+                <span class="serif-i text-gold">Trusted</span> Wholesale Cigar
+                Partner Since 2008.
+              </h1>
+
+              <p
+                class="rise rise-3 mt-6 lg:mt-9 text-[15px] sm:text-[16.5px] leading-[1.75] text-parchment/85 max-w-[52ch]"
+              >
+                Don Cubano supplies independent retailers across Canada with
+                hand-rolled cigars at fair, durable wholesale pricing.
+              </p>
+
+              <div
+                class="rise rise-4 mt-8 lg:mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+              >
+                <a href="#contact" class="btn-solid">Open an account</a>
+                <a href="#casaberro" class="btn-line">View Casa Berro</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hairline ticker strip -->
+          <div
+            class="border-y border-[oklch(0.692_0.082_75/0.18)] relative bg-ink"
+            style="z-index: 2"
+          >
+            <div
+              class="container-tight py-4 marks text-[11px] tracking-[0.22em] uppercase text-dust"
+            >
+              <span class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                Family-owned
+              </span>
+              <span class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                Canadian distributor
+              </span>
+              <span class="flex items-center gap-3">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+                Hand-rolled in Nicaragua
+              </span>
+            </div>
+          </div>
+        </section>
+
+          <!-- ════════════════  SECTION 3 · Casa Berro  ════════════════ -->
+          <section
+            id="Casa Berro"
+            class="relative hair-top"
+            style="background: var(--ink)"
+          >
+            <!-- Full-bleed background image, fades to ink at bottom -->
+            <img
+              src="brand_assets/opt/2-1024.jpg"
+              srcset="
+                brand_assets/opt/2-640.jpg   640w,
+                brand_assets/opt/2-1024.jpg 1024w,
+                brand_assets/opt/2-1600.jpg 1600w
+              "
+              sizes="100vw"
+              alt=""
+              aria-hidden="true"
+              class="absolute inset-0 w-full h-full object-cover"
+              style="filter: saturate(0.88) contrast(1.03) brightness(0.68)"
+              width="1600"
+              height="2400"
+              loading="lazy"
+              decoding="async"
+            />
+
+            <!-- Overlay: top fade from ink (section join), radial darken for legibility, hard fade to ink at bottom -->
+            <div
+              class="absolute inset-0 pointer-events-none"
+              style="
+                background:
+                  radial-gradient(
+                    ellipse 80% 60% at 50% 40%,
+                    oklch(0.165 0.013 50 / 0.3) 0%,
+                    oklch(0.165 0.013 50 / 0.6) 55%,
+                    oklch(0.165 0.013 50 / 0.82) 100%
+                  ),
+                  linear-gradient(
+                    180deg,
+                    var(--ink) 0%,
+                    transparent 12%,
+                    transparent 60%,
+                    oklch(0.165 0.013 50 / 0.85) 80%,
+                    var(--ink) 100%
+                  );
+                z-index: 1;
+              "
+            ></div>
+
+            <!-- Header copy -->
+            <div
+              class="container-wide pt-20 lg:pt-28 pb-6 lg:pb-8 relative"
+              style="z-index: 2"
+            >
+              <div class="flex flex-col items-center text-center">
+                <div class="inline-flex items-center gap-3 eyebrow mb-7">
+                  <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+                  <span>Casa Berro &middot; Signature Line</span>
+                  <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+                </div>
+                <h2 class="h-display disp-h2-sm max-w-[18ch]">
+                  Casa Berro, <span class="serif-i">Our Signature Line.</span>
+                </h2>
+                <p
+                  class="mt-8 lg:mt-10 text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
+                >
+                  Casa Berro offers four premium hand-rolled cigar blends
+                  developed in Nicaragua and supplied through Don Cubano.
+                  Family-owned and built for retailers, the brand delivers
+                  distinct profiles across its lineup with competitive
+                  wholesale pricing that keeps premium cigars accessible.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Casa Berro carousel (Gallery6 pattern, native JS + Embla-free) -->
+          <div class="pl-6 lg:pl-10 pb-16 lg:pb-24">
+            <!-- Header row: title left, arrows right -->
+            <div
+              class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 lg:mb-14 hair-bottom pb-8"
+            >
+              <div>
+                <div class="eyebrow mb-4">Casa Berro · Four Lines</div>
+                <h3 class="h-display disp-h3-sm max-w-[22ch]">
+                  Each Blend, a Distinct Profile For Your Shelf.
+                </h3>
+              </div>
+              <div class="flex items-center gap-2 shrink-0">
+                <button
+                  id="cb-prev"
+                  class="btn-line !p-0 w-11 h-11 justify-center disabled:opacity-35 disabled:cursor-not-allowed"
+                  aria-label="Previous cigar"
+                  disabled
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M11 14L6 9L11 4"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="square"
+                    />
+                  </svg>
+                </button>
+                <button
+                  id="cb-next"
+                  class="btn-line !p-0 w-11 h-11 justify-center disabled:opacity-35 disabled:cursor-not-allowed"
+                  aria-label="Next cigar"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M7 4L12 9L7 14"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="square"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Carousel viewport -->
+            <div
+              id="cb-carousel"
+              class="overflow-hidden"
+              role="region"
+              aria-label="Casa Berro cigar lines"
+              aria-live="polite"
+            >
+              <div
+                id="cb-track"
+                class="flex gap-5 lg:gap-7 transition-transform duration-500"
+                style="will-change: transform"
+              >
+                <!-- WHITE -->
+                <div
+                  class="cb-slide shrink-0 w-[82vw] sm:w-[52vw] lg:w-[calc(25%-21px)] cb-line"
+                  data-line="white"
+                >
+                  <a href="#contact" class="group block">
+                    <div
+                      class="plate aspect-[3/4] overflow-hidden rounded-none"
+                    >
+                      <picture>
+                        <source
+                          type="image/webp"
+                          srcset="
+                            brand_assets/opt/1-640.webp   640w,
+                            brand_assets/opt/1-1024.webp 1024w
+                          "
+                          sizes="(min-width:1024px) 25vw, (min-width:640px) 52vw, 82vw"
+                        />
+                        <img
+                          src="brand_assets/opt/1-1024.jpg"
+                          srcset="
+                            brand_assets/opt/1-640.jpg   640w,
+                            brand_assets/opt/1-1024.jpg 1024w
+                          "
+                          sizes="(min-width:1024px) 25vw, (min-width:640px) 52vw, 82vw"
+                          alt="Three Casa Berro White cigars stacked against a warm shadow."
+                          width="1600"
+                          height="2400"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                    </div>
+                    <div class="pt-5">
+                      <h4 class="h-display disp-h4">
+                        Casa Berro <span class="serif-i cb-name">White</span>
+                      </h4>
+                      <div class="eyebrow mt-2 text-parchment/55">
+                        San Andrés wrapper
+                      </div>
+                      <p
+                        class="mt-4 text-[14.5px] leading-[1.7] text-parchment/80 line-clamp-3"
+                      >
+                        Cream. Cedar. Toasted nuts. A smooth San Andrés cigar
+                        built for the customer easing into the humidor.
+                      </p>
+                      <div
+                        class="mt-5 flex items-center gap-4 text-[11.5px] tracking-[0.18em] uppercase"
+                      >
+                        <span class="text-parchment/50">Mild / Medium</span>
+                        <span class="strength" aria-label="Strength: 2 of 4">
+                          <span class="on"></span><span class="on"></span
+                          ><span></span><span></span>
+                        </span>
+                      </div>
+                      <div
+                        class="mt-6 flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200"
+                      >
+                        <span>Enquire</span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          aria-hidden="true"
+                          class="transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          <path
+                            d="M3 7h8M8 4l3 3-3 3"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                            stroke-linecap="square"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- RED -->
+                <div
+                  class="cb-slide shrink-0 w-[82vw] sm:w-[52vw] lg:w-[calc(25%-21px)] cb-line"
+                  data-line="red"
+                >
+                  <a href="#contact" class="group block">
+                    <div
+                      class="plate aspect-[3/4] overflow-hidden rounded-none"
+                    >
+                      <picture>
+                        <source
+                          type="image/webp"
+                          srcset="
+                            brand_assets/opt/9-640.webp   640w,
+                            brand_assets/opt/9-1024.webp 1024w
+                          "
+                          sizes="(min-width:1024px) 25vw, (min-width:640px) 52vw, 82vw"
+                        />
+                        <img
+                          src="brand_assets/opt/9-1024.jpg"
+                          srcset="
+                            brand_assets/opt/9-640.jpg   640w,
+                            brand_assets/opt/9-1024.jpg 1024w
+                          "
+                          sizes="(min-width:1024px) 25vw, (min-width:640px) 52vw, 82vw"
+                          alt="Casa Berro Red cigars in a wooden box, photographed in soft side light."
+                          width="1600"
+                          height="2400"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                    </div>
+                    <div class="pt-5">
+                      <h4 class="h-display disp-h4">
+                        Casa Berro <span class="serif-i cb-name">Red</span>
+                      </h4>
+                      <div class="eyebrow mt-2 text-parchment/55">
+                        Ecuadorian Habano
+                      </div>
+                      <p
+                        class="mt-4 text-[14.5px] leading-[1.7] text-parchment/80 line-clamp-3"
+                      >
+                        Toasted almond. Dried apricot. Soft white pepper. An
+                        easy recommendation for the regular smoker.
+                      </p>
+                      <div
+                        class="mt-5 flex items-center gap-4 text-[11.5px] tracking-[0.18em] uppercase"
+                      >
+                        <span class="text-parchment/50">Medium</span>
+                        <span class="strength" aria-label="Strength: 2 of 4">
+                          <span class="on"></span><span class="on"></span
+                          ><span></span><span></span>
+                        </span>
+                      </div>
+                      <div
+                        class="mt-6 flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200"
+                      >
+                        <span>Enquire</span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          aria-hidden="true"
+                          class="transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          <path
+                            d="M3 7h8M8 4l3 3-3 3"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                            stroke-linecap="square"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- BLUE -->
+                <div
+                  class="cb-slide shrink-0 w-[82vw] sm:w-[52vw] lg:w-[calc(25%-21px)] cb-line"
+                  data-line="blue"
+                >
+                  <a href="#contact" class="group block">
+                    <div
+                      class="plate aspect-[3/4] overflow-hidden rounded-none"
+                    >
+                      <picture>
+                        <source
+                          type="image/webp"
+                          srcset="
+                            brand_assets/opt/15-640.webp   640w,
+                            brand_assets/opt/15-1024.webp 1024w
+                          "
+                          sizes="(min-width:1024px) 25vw, (min-width:640px) 52vw, 82vw"
+                        />
+                        <img
+                          src="brand_assets/opt/15-1024.jpg"
+                          srcset="
+                            brand_assets/opt/15-640.jpg   640w,
+                            brand_assets/opt/15-1024.jpg 1024w
+                          "
+                          sizes="(min-width:1024px) 25vw, (min-width:640px) 52vw, 82vw"
+                          alt="Three Casa Berro Blue cigars on dark slate, low key lighting."
+                          width="1600"
+                          height="2400"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                    </div>
+                    <div class="pt-5">
+                      <h4 class="h-display disp-h4">
+                        Casa Berro <span class="serif-i cb-name">Blue</span>
+                      </h4>
+                      <div class="eyebrow mt-2 text-parchment/55">
+                        Connecticut Wrapper
+                      </div>
+                      <p
+                        class="mt-4 text-[14.5px] leading-[1.7] text-parchment/80 line-clamp-3"
+                      >
+                        Cream. Cedar. Toasted almond. A clean, mild draw for the
+                        everyday smoker.
+                      </p>
+                      <div
+                        class="mt-5 flex items-center gap-4 text-[11.5px] tracking-[0.18em] uppercase"
+                      >
+                        <span class="text-parchment/50">Mild</span>
+                        <span class="strength" aria-label="Strength: 1 of 4">
+                          <span class="on"></span><span></span><span></span
+                          ><span></span>
+                        </span>
+                      </div>
+                      <div
+                        class="mt-6 flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200"
+                      >
+                        <span>Enquire</span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          aria-hidden="true"
+                          class="transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          <path
+                            d="M3 7h8M8 4l3 3-3 3"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                            stroke-linecap="square"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- BLACK -->
+                <div
+                  class="cb-slide shrink-0 w-[82vw] sm:w-[52vw] lg:w-[calc(25%-21px)] cb-line"
+                  data-line="black"
+                >
+                  <a href="#contact" class="group block">
+                    <div
+                      class="plate aspect-[3/4] overflow-hidden rounded-none"
+                    >
+                      <picture>
+                        <img
+                          src="brand_assets/19.jpeg"
+                          alt="A box of Casa Berro Black cigars, photographed in soft side light."
+                          width="1600"
+                          height="2400"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </picture>
+                    </div>
+                    <div class="pt-5">
+                      <h4 class="h-display disp-h4">
+                        Casa Berro <span class="serif-i cb-name">Black</span>
+                      </h4>
+                      <div class="eyebrow mt-2 text-parchment/55">
+                        Ecuadorian Sumatra Wrapper
+                      </div>
+                      <p
+                        class="mt-4 text-[14.5px] leading-[1.7] text-parchment/80 line-clamp-3"
+                      >
+                        Dark chocolate. Leather. Black pepper. A slow-developing
+                        finish, for the seasoned customer.
+                      </p>
+                      <div
+                        class="mt-5 flex items-center gap-4 text-[11.5px] tracking-[0.18em] uppercase"
+                      >
+                        <span class="text-parchment/50">Medium Full</span>
+                        <span class="strength" aria-label="Strength: 3 of 4">
+                          <span class="on"></span><span class="on"></span
+                          ><span class="on"></span><span></span>
+                        </span>
+                      </div>
+                      <div
+                        class="mt-6 flex items-center gap-2 text-[12px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200"
+                      >
+                        <span>Enquire</span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          aria-hidden="true"
+                          class="transition-transform duration-200 group-hover:translate-x-1"
+                        >
+                          <path
+                            d="M3 7h8M8 4l3 3-3 3"
+                            stroke="currentColor"
+                            stroke-width="1.2"
+                            stroke-linecap="square"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dot indicators -->
+            <div
+              class="flex items-center gap-2 mt-8"
+              role="tablist"
+              aria-label="Cigar line"
+            >
+              <button
+                role="tab"
+                aria-selected="true"
+                aria-label="White"
+                data-cb-dot="0"
+                class="cb-dot w-5 h-[3px] bg-gold transition-all duration-300"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Red"
+                data-cb-dot="1"
+                class="cb-dot w-[3px] h-[3px] rounded-full bg-parchment/30 transition-all duration-300"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Blue"
+                data-cb-dot="2"
+                class="cb-dot w-[3px] h-[3px] rounded-full bg-parchment/30 transition-all duration-300"
+              ></button>
+              <button
+                role="tab"
+                aria-selected="false"
+                aria-label="Black"
+                data-cb-dot="3"
+                class="cb-dot w-[3px] h-[3px] rounded-full bg-parchment/30 transition-all duration-300"
+              ></button>
+            </div>
+          </div>
+
+          <!-- ════════════════  SECTION 2 · THE HOUSE × PROVENANCE  ════════════════ -->
+        <section id="house" class="relative">
+          <!-- Centered intro, tobacco-field backdrop -->
+          <div class="house-intro relative overflow-hidden">
+            <img
+              src="brand_assets/20.jpg"
+              alt=""
+              aria-hidden="true"
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div
+              class="container-wide pt-20 lg:pt-28 pb-20 lg:pb-28 relative z-[1]"
+            >
+              <div class="flex flex-col items-center text-center">
+                <div class="inline-flex items-center gap-3 eyebrow mb-7">
+                  <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+                  <span>About Us</span>
+                  <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
+                </div>
+                <h2 class="h-display disp-h2-sm max-w-[18ch]">
+                  A Family Trade,
+                  <span class="serif-i">Rolled in Estelí.</span>
+                </h2>
+                <p
+                  class="mt-8 lg:mt-10 text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
+                >
+                  Don Cubano is a family-owned, Canadian wholesale cigar distributor based in Windsor, Ontario. Since 2008 we have worked directly with manufacturers in Estelí, Nicaragua, blending cigars with tobacco sourced from across four nations for the Canadian retail market.
+                </p>
+              </div>
+            </div>
+          </div>
+
+         <!-- Partner releases · Gallery4 pattern -->
+<div class="pt-16 lg:pt-24 pb-16 lg:pb-20">
+  <!-- Header -->
+  <div class="container-tight mb-10 lg:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div>
+      <div class="eyebrow mb-4">PREMIUM BRANDS</div>
+      <h3 class="h-display disp-h3-sm max-w-[22ch]">
+        Our Partners
+      </h3>
+    </div>
+    <div class="flex items-center gap-2 shrink-0">
+      <button
+        id="g4-prev"
+        class="btn-line !p-0 w-11 h-11 justify-center disabled:opacity-35 disabled:cursor-not-allowed"
+        aria-label="Previous release"
+        disabled
+      >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M11 14L6 9L11 4" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/>
+        </svg>
+      </button>
+      <button
+        id="g4-next"
+        class="btn-line !p-0 w-11 h-11 justify-center disabled:opacity-35 disabled:cursor-not-allowed"
+        aria-label="Next release"
+      >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M7 4L12 9L7 14" stroke="currentColor" stroke-width="1.3" stroke-linecap="square"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Carousel viewport — bleeds edge to edge like Gallery4 -->
+  <div
+    id="g4-carousel"
+    class="overflow-hidden"
+    role="region"
+    aria-label="Partner cigar releases"
+    aria-live="polite"
+  >
+    <div
+      id="g4-track"
+      class="flex gap-5 pl-6 lg:pl-[max(24px,calc(50vw-580px))]"
+      style="will-change: transform; transition: transform 480ms cubic-bezier(0.22,1,0.36,1);"
+    >
+
+      <!-- CARD 1 · Le Villes Reserva Maduro -->
+      <a href="#contact" class="g4-slide group shrink-0 w-[82vw] sm:w-[360px] lg:w-[400px] block">
+        <div class="relative overflow-hidden" style="aspect-ratio:5/4; border-radius:2px;">
+          <picture>
+            <source type="image/webp"
+              srcset="brand_assets/opt/5-640.webp 640w, brand_assets/opt/5-1024.webp 1024w"
+              sizes="(min-width:1024px) 400px, (min-width:640px) 360px, 82vw" />
+            <img src="brand_assets/opt/5-1024.jpg"
+              srcset="brand_assets/opt/5-640.jpg 640w, brand_assets/opt/5-1024.jpg 1024w"
+              sizes="(min-width:1024px) 400px, (min-width:640px) 360px, 82vw"
+              alt="Le Villes Reserva Maduro cigars in a red-lined wooden box."
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              width="1600" height="1067" loading="lazy" decoding="async" />
+          </picture>
+          <!-- Bottom gradient overlay -->
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 30%, oklch(0.165 0.013 50 / 0.45) 65%, oklch(0.165 0.013 50 / 0.88) 100%);"></div>
+          <!-- Text on image -->
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-7">
+            <div class="h-display text-[18px] sm:text-[20px] leading-[1.2] tracking-[-0.016em] text-parchment mb-3">
+              LAS VILLAS CIGARS
+            </div>
+            <p class="text-[13px] leading-[1.65] text-parchment/75 line-clamp-2 mb-5">
+              Las Villas Cigars delivers handcrafted premium cigars with smooth flavor and timeless craftsmanship.
+            </p>
+            <div class="flex items-center gap-2 text-[11.5px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200">
+              <span>Request catalogue</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 2 · Le Villes Coronas -->
+      <a href="#contact" class="g4-slide group shrink-0 w-[82vw] sm:w-[360px] lg:w-[400px] block">
+        <div class="relative overflow-hidden" style="aspect-ratio:5/4; border-radius:2px;">
+          <picture>
+            <source type="image/webp"
+              srcset="brand_assets/opt/6-640.webp 640w, brand_assets/opt/6-1024.webp 1024w"
+              sizes="(min-width:1024px) 400px, (min-width:640px) 360px, 82vw" />
+            <img src="brand_assets/opt/6-1024.jpg"
+              srcset="brand_assets/opt/6-640.jpg 640w, brand_assets/opt/6-1024.jpg 1024w"
+              sizes="(min-width:1024px) 400px, (min-width:640px) 360px, 82vw"
+              alt="Le Villes Coronas cigars with blue and gold bands, arranged in their open box."
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              width="1600" height="2400" loading="lazy" decoding="async" />
+          </picture>
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 30%, oklch(0.165 0.013 50 / 0.45) 65%, oklch(0.165 0.013 50 / 0.88) 100%);"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-7">
+            <div class="h-display text-[18px] sm:text-[20px] leading-[1.2] tracking-[-0.016em] text-parchment mb-3">
+              GUILLERMO PENA CIGARS
+            </div>
+            <p class="text-[13px] leading-[1.65] text-parchment/75 line-clamp-2 mb-5">
+              Guillermo Peña Cigars offers premium cigars with refined flavor and classic craftsmanship.
+            </p>
+            <div class="flex items-center gap-2 text-[11.5px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200">
+              <span>Request catalogue</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- CARD 3 · House Connecticut Robusto -->
+      <a href="#contact" class="g4-slide group shrink-0 w-[82vw] sm:w-[360px] lg:w-[400px] block">
+        <div class="relative overflow-hidden" style="aspect-ratio:5/4; border-radius:2px;">
+          <picture>
+            <source type="image/webp"
+              srcset="brand_assets/24.jpeg 640w, brand_assets/opt/11-1024.webp 1024w"
+              sizes="(min-width:1024px) 400px, (min-width:640px) 360px, 82vw" />
+            <img src="brand_assets/24.jpeg"
+              srcset="brand_assets/opt/11-640.jpg 640w, brand_assets/24.jpeg 1024w"
+              sizes="(min-width:1024px) 400px, (min-width:640px) 360px, 82vw"
+              alt="A box of house line cigars with blue bands, photographed in even light."
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              width="1600" height="1067" loading="lazy" decoding="async" />
+          </picture>
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to bottom, transparent 30%, oklch(0.165 0.013 50 / 0.45) 65%, oklch(0.165 0.013 50 / 0.88) 100%);"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-7">
+            <div class="h-display text-[18px] sm:text-[20px] leading-[1.2] tracking-[-0.016em] text-parchment mb-3">
+              RODRIGUEZ CIGARS
+            </div>
+            <p class="text-[13px] leading-[1.65] text-parchment/75 line-clamp-2 mb-5">
+              Rodriguez Cigars honors its Florida Keys history with cigars rooted in tradition, rich flavor, and craftsmanship.
+            </p>
+            <div class="flex items-center gap-2 text-[11.5px] tracking-[0.16em] uppercase text-parchment/60 group-hover:text-gold transition-colors duration-200">
+              <span>Request catalogue</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" class="transition-transform duration-200 group-hover:translate-x-1">
+                <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="square"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- Dot indicators + CTA row -->
+  <div class="container-tight mt-8 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-2" role="tablist" aria-label="Partner release">
+      <button role="tab" aria-selected="true"  aria-label="Le Villes Reserva Maduro" data-g4-dot="0" class="g4-dot w-5 h-[3px] bg-gold transition-all duration-300"></button>
+      <button role="tab" aria-selected="false" aria-label="Le Villes Coronas"         data-g4-dot="1" class="g4-dot w-[3px] h-[3px] rounded-full bg-parchment/30 transition-all duration-300"></button>
+      <button role="tab" aria-selected="false" aria-label="Connecticut Robusto"        data-g4-dot="2" class="g4-dot w-[3px] h-[3px] rounded-full bg-parchment/30 transition-all duration-300"></button>
+    </div>
+    <div class="flex flex-wrap items-center justify-between gap-4 hair-top pt-7 w-full">
+      <p class="text-[14px] text-parchment/80 max-w-[520px] leading-[1.7]">
+        A complete catalogue with current case pricing is sent privately to verified Canadian retailers.
+      </p>
+      <a href="#contact" class="btn-line">Request the full catalogue</a>
+    </div>
+  </div>
+
+</div>
+
+        <!-- ════════════════  SECTION 4 · TESTIMONIAL + CONTACT  ════════════════ -->
+
+        <!-- Pull quote spread -->
+        <section class="relative pullquote">
+          <div class="container-tight py-16 lg:py-24 text-center">
+            <div class="eyebrow mb-9 inline-flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+              <span>One retailer, sixteen years</span>
+            </div>
+            <figure class="max-w-[940px] mx-auto">
+              <p class="serif-i disp-quote hang-quote text-parchment/95">
+                “We’ve carried Don Cubano Cigars since day one, and they’ve crafted our house blends with the same consistent quality and reliability ever since.”
+              </p>
+              <figcaption class="mt-10 eyebrow tnum">
+                Independent retailer · Toronto, Ontario
+              </figcaption>
+            </figure>
+
+            <!-- Hairline of the four "what they come back for" claims, demoted from a section -->
+            <div
+              class="mt-20 lg:mt-24 hair-top pt-7 text-[12px] tracking-[0.16em] uppercase text-dust flex flex-wrap justify-center gap-x-6 lg:gap-x-12 gap-y-3"
+            >
+              <span>Competitive Pricing</span>
+              <span class="text-gold">·</span>
+              <span>Consistent Quality</span>
+              <span class="text-gold">·</span>
+              <span>Reliable distribution</span>
+              <span class="text-gold">·</span>
+              <span>A real partnership</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="relative">
+          <div class="container-tight py-16 lg:py-24">
+            <div class="grid lg:grid-cols-12 gap-x-10 gap-y-12 lg:gap-y-16">
+              <!-- Left: copy + contact details -->
+              <div class="lg:col-span-7">
+                <div class="flex items-center gap-3 eyebrow mb-7">
+                  <span>Open an account</span>
+                </div>
+                <h2 class="h-display disp-h2">
+                  For Retailers Ready to Stock
+                  <span class="serif-i text-gold">a Working Line.</span>
+                </h2>
+                <p
+                  class="mt-9 text-[16px] leading-[1.78] text-parchment/85 max-w-[560px]"
+                >
+                  We work directly with licensed Canadian cigar retailers. Reach
+                  out, and we will send the current catalogue.
+                </p>
+
+                <div
+                  class="mt-12 lg:mt-16 grid sm:grid-cols-2 gap-x-10 gap-y-9 max-w-[560px]"
+                >
+                  <div>
+                    <div class="eyebrow">By telephone</div>
+                    <a
+                      href="tel:+15195551207"
+                      class="serif tnum text-[20px] mt-2.5 block hover:text-gold transition-colors"
+                      >+1 (226) 506-2954</a
+                    >
+                  </div>
+                  <div>
+                    <div class="eyebrow">By correspondence</div>
+                    <a
+                      href="mailto:trade@doncubano.ca"
+                      class="serif text-[20px] mt-2.5 block hover:text-gold transition-colors"
+                      >doncubanotobacco@hotmail.com</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: form -->
+              <div class="lg:col-span-5">
+                <div id="form-shell" class="relative">
+                  <form
+                    id="trade-form"
+                    class="bg-ink-2 p-6 sm:p-8 lg:p-10 border border-rule"
+                    novalidate
+                    aria-describedby="form-status"
+                  >
+                    <h3
+                      class="serif text-[22px] sm:text-[26px] mt-3.5 leading-tight"
+                    >
+                      Request the catalogue.
+                    </h3>
+
+                    <div class="mt-8 space-y-6">
+                      <div class="field-row">
+                        <label for="f-shop" class="eyebrow block mb-2.5"
+                          >Shop, retail business</label
+                        >
+                        <input
+                          id="f-shop"
+                          name="shop"
+                          type="text"
+                          class="field"
+                          required
+                          autocomplete="organization"
+                        />
+                        <div class="field-error" data-error-for="shop">
+                          Shop name is required.
+                        </div>
+                      </div>
+                      <div
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-5"
+                      >
+                        <div class="field-row">
+                          <label for="f-name" class="eyebrow block mb-2.5"
+                            >Contact name</label
+                          >
+                          <input
+                            id="f-name"
+                            name="name"
+                            type="text"
+                            class="field"
+                            required
+                            autocomplete="name"
+                          />
+                          <div class="field-error" data-error-for="name">
+                            Contact name is required.
+                          </div>
+                        </div>
+                        <div class="field-row">
+                          <label for="f-province" class="eyebrow block mb-2.5"
+                            >Province</label
+                          >
+                          <select
+                            id="f-province"
+                            name="province"
+                            class="field"
+                            required
+                            autocomplete="address-level1"
+                          >
+                            <option value="">Select</option>
+                            <option value="AB">Alberta</option>
+                            <option value="BC">British Columbia</option>
+                            <option value="MB">Manitoba</option>
+                            <option value="NB">New Brunswick</option>
+                            <option value="NL">
+                              Newfoundland and Labrador
+                            </option>
+                            <option value="NS">Nova Scotia</option>
+                            <option value="NT">Northwest Territories</option>
+                            <option value="NU">Nunavut</option>
+                            <option value="ON">Ontario</option>
+                            <option value="PE">Prince Edward Island</option>
+                            <option value="QC">Quebec</option>
+                            <option value="SK">Saskatchewan</option>
+                            <option value="YT">Yukon</option>
+                          </select>
+                          <div class="field-error" data-error-for="province">
+                            Province is required.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="field-row">
+                        <label for="f-email" class="eyebrow block mb-2.5"
+                          >Email</label
+                        >
+                        <input
+                          id="f-email"
+                          name="email"
+                          type="email"
+                          class="field"
+                          required
+                          autocomplete="email"
+                        />
+                        <div class="field-error" data-error-for="email">
+                          A valid trade email is required.
+                        </div>
+                      </div>
+                      <div class="field-row">
+                        <label for="f-note" class="eyebrow block mb-2.5"
+                          >A note (optional)</label
+                        >
+                        <textarea
+                          id="f-note"
+                          name="note"
+                          rows="3"
+                          class="field resize-none"
+                        ></textarea>
+                      </div>
+                    </div>
+
+                    <div
+                      id="form-fail"
+                      class="mt-7 text-[12.5px] tracking-[0.06em] text-ember"
+                      role="alert"
+                      aria-live="polite"
+                      hidden
+                    >
+                      Submission did not go through. Please try again, or call
+                      <a class="ulink !text-parchment" href="tel:+15195551207"
+                        >+1 (519) 555-1207</a
+                      >.
+                    </div>
+
+                    <button
+                      type="submit"
+                      id="form-submit"
+                      class="btn-solid mt-9 w-full justify-center"
+                    >
+                      <span class="submit-label">Submit enquiry</span>
+                      <span class="submit-spinner hidden" aria-hidden="true"
+                        >●●●</span
+                      >
+                    </button>
+                    <p
+                      class="mt-5 text-[11.5px] tracking-[0.20em] uppercase text-dust text-center"
+                    >
+                      For licensed Canadian retailers only.
+                    </p>
+                    <p id="form-status" class="sr-only" aria-live="polite"></p>
+                  </form>
+
+                  <!-- Success state replaces form in place -->
+                  <div id="form-success" class="form-success hidden">
+                    <div class="flex items-center justify-between">
+                      <div class="eyebrow">Form № 01</div>
+                      <div class="eyebrow text-gold">Received</div>
+                    </div>
+                    <h3 class="h-display disp-h3-sm mt-4">
+                      We will be in touch within two trading days.
+                    </h3>
+                    <p
+                      class="text-[14.5px] leading-[1.78] text-parchment/85 mt-6"
+                    >
+                      Your enquiry has been logged. A member of the trade desk
+                      will reach out from
+                      <a
+                        class="ulink !text-parchment"
+                        href="mailto:trade@doncubano.ca"
+                        >trade@doncubano.ca</a
+                      >
+                      with the catalogue, current case pricing, and minimums for
+                      your province.
+                    </p>
+                    <ul class="mt-8 space-y-3 text-[13.5px] text-parchment/75">
+                      <li class="flex gap-3">
+                        <span class="num text-[15px] leading-tight">01</span
+                        ><span>Catalogue PDF, current quarter</span>
+                      </li>
+                      <li class="flex gap-3">
+                        <span class="num text-[15px] leading-tight">02</span
+                        ><span>Case pricing sheet, your province</span>
+                      </li>
+                      <li class="flex gap-3">
+                        <span class="num text-[15px] leading-tight">03</span
+                        ><span>One named point of contact, by phone</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ──────────────────────  FOOTER  ────────────────────── -->
+      <footer class="border-t border-rule/60 pb-6 pt-16 lg:pb-8 lg:pt-24">
+        <div class="container-tight">
+          <!-- Top row: brand mark + social -->
+          <div class="md:flex md:items-start md:justify-between">
+            <a
+              href="#top"
+              class="inline-flex items-center gap-x-3 group"
+              aria-label="Don Cubano Cigars"
+            >
+              <span
+                class="inline-flex items-center justify-center h-10 w-10 rounded-full border border-gold/45 text-gold transition-colors duration-200 group-hover:border-gold group-hover:text-gold-soft"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 40 40"
+                  class="h-[22px] w-[22px]"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 4 L34 12 L34 28 L20 36 L6 28 L6 12 Z" />
+                  <path
+                    d="M20 11 L27 15 L27 25 L20 29 L13 25 L13 15 Z"
+                    stroke-width="0.7"
+                    opacity="0.7"
+                  />
+                  <circle cx="20" cy="20" r="1.4" fill="currentColor" />
+                </svg>
+              </span>
+              <span class="flex items-baseline gap-3">
+                <span class="serif text-[26px] tracking-[-0.018em] leading-none"
+                  >Don Cubano</span
+                >
+                <span
+                  class="text-[11px] tracking-[0.28em] uppercase text-dust"
+                  >Cigars</span
+                >
+              </span>
+            </a>
+            <ul class="flex list-none mt-8 md:mt-0 space-x-3">
+              <li>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-[18px] w-[18px]"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.7" fill="currentColor" />
+                  </svg>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="mailto:trade@doncubano.ca"
+                  aria-label="Email trade desk"
+                  class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    class="h-[18px] w-[18px]"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path d="m3 7 9 6 9-6" />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Bottom: copyright + main nav + legal -->
+          <div
+            class="mt-10 pt-2 md:mt-8 md:pt-2 lg:grid lg:grid-cols-10 lg:gap-x-8"
+          >
+            <nav
+              class="lg:mt-0 lg:col-[4/11]"
+              aria-label="Footer navigation"
+            >
+              <ul class="list-none flex flex-wrap -my-1 -mx-3 lg:justify-end">
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="#house"
+                    class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                    >About Us</a
+                  >
+                </li>
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="#casaberro"
+                    class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                    >Casa Berro</a
+                  >
+                </li>
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="retailers.html"
+                    class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                    >Our Retailers</a
+                  >
+                </li>
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="partners.html"
+                    class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                    >Partners</a
+                  >
+                </li>
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="#contact"
+                    class="text-[13.5px] text-parchment underline-offset-4 hover:underline hover:text-gold transition-colors duration-200"
+                    >Contact</a
+                  >
+                </li>
+              </ul>
+            </nav>
+            <div class="mt-6 lg:mt-3 lg:col-[4/11]">
+              <ul class="list-none flex flex-wrap -my-1 -mx-3 lg:justify-end">
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="#"
+                    class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
+                    >Privacy</a
+                  >
+                </li>
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="#"
+                    class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
+                    >Terms</a
+                  >
+                </li>
+                <li class="my-1 mx-3 shrink-0">
+                  <a
+                    href="#"
+                    class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
+                    >Trade Policy</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div
+              class="mt-8 text-[12.5px] leading-[1.7] text-dust lg:mt-0 lg:row-[1/3] lg:col-[1/4]"
+            >
+              <div>© 2026 Don Cubano Cigars Co.</div>
+              <div class="mt-1 tracking-[0.04em]">
+                Trade only · Adults of legal smoking age
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-rule/60 mt-10 md:mt-12"></div>
+      </footer>
+    </div>
+    <!-- /#site -->
+
+    <script>
+      (function () {
+        "use strict";
+
+        // ──────────────────────  Constants  ──────────────────────
+        var STORAGE_KEY = "dc_age_verified";
+        var STORAGE_DAYS = 30;
+
+        // The province dropdown labels each option with its smoking age inline, e.g. "Ontario (19)".
+        // The gate is a self-attestation: the visitor confirms they meet that age, no DOB collected.
+
+        // ──────────────────────  Elements  ──────────────────────
+        var ageGate = document.getElementById("age-gate");
+        var ageDecline = document.getElementById("age-decline");
+        var site = document.getElementById("site");
+        var agForm = document.getElementById("ag-form");
+        var agProvince = document.getElementById("ag-province");
+        var agConfirm = document.getElementById("ag-confirm");
+        var agSubmit = document.getElementById("ag-submit");
+        var agDeclineBtn = document.getElementById("ag-decline");
+        var agProvinceError = document.getElementById("ag-province-error");
+
+        // ──────────────────────  Age Gate State  ──────────────────────
+        function isVerified() {
+          try {
+            var raw = localStorage.getItem(STORAGE_KEY);
+            if (!raw) return false;
+            var saved = new Date(raw);
+            if (isNaN(saved.getTime())) return false;
+            var ageMs = Date.now() - saved.getTime();
+            var maxMs = STORAGE_DAYS * 24 * 60 * 60 * 1000;
+            return ageMs < maxMs;
+          } catch (e) {
+            return false;
+          }
+        }
+
+        function persistVerification() {
+          try {
+            localStorage.setItem(STORAGE_KEY, new Date().toISOString());
+          } catch (e) {}
+        }
+
+        function showSite() {
+          ageGate.hidden = true;
+          ageGate.style.display = "none";
+          ageDecline.hidden = true;
+          ageDecline.style.display = "none";
+          site.hidden = false;
+          document.documentElement.style.overflow = "";
+        }
+
+        function showDecline() {
+          ageGate.hidden = true;
+          ageGate.style.display = "none";
+          ageDecline.hidden = false;
+          ageDecline.style.display = "flex";
+          document.documentElement.style.overflow = "hidden";
+          var heading = ageDecline.querySelector("h2");
+          if (heading)
+            (heading.setAttribute("tabindex", "-1"),
+              heading.focus({ preventScroll: true }));
+        }
+
+        function showGate() {
+          ageGate.hidden = false;
+          ageGate.style.display = "flex";
+          site.hidden = true;
+          document.documentElement.style.overflow = "hidden";
+          setTimeout(function () {
+            agProvince.focus();
+          }, 30);
+        }
+
+        // Confirm-button enable logic
+        function refreshAgSubmit() {
+          var ok = !!agProvince.value && agConfirm.checked;
+          agSubmit.disabled = !ok;
+        }
+        agProvince.addEventListener("change", function () {
+          agProvinceError.textContent = "";
+          refreshAgSubmit();
+        });
+        agConfirm.addEventListener("change", refreshAgSubmit);
+
+        agForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!agProvince.value) {
+            agProvinceError.textContent =
+              "Please select a province to continue.";
+            agProvince.focus();
+            return;
+          }
+          if (!agConfirm.checked) return;
+          persistVerification();
+          showSite();
+        });
+
+        agDeclineBtn.addEventListener("click", function () {
+          showDecline();
+        });
+
+        // Focus trap on age gate
+        function trapFocus(e) {
+          if (ageGate.hidden && ageDecline.hidden) return;
+          var container = ageGate.hidden ? ageDecline : ageGate;
+          var focusable = container.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+          );
+          if (!focusable.length) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (e.key !== "Tab") return;
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+        document.addEventListener("keydown", trapFocus);
+
+        // ──────────────────────  Init  ──────────────────────
+        if (isVerified()) {
+          showSite();
+        } else {
+          showGate();
+        }
+
+        // ──────────────────────  Header scroll compression (rAF-throttled)  ──────────────────────
+        var header = document.getElementById("site-header");
+        var lastScroll = 0;
+        var scrollPending = false;
+        function applyScroll() {
+          scrollPending = false;
+          var y = window.scrollY || window.pageYOffset;
+          if (header) {
+            if (y > 200 && lastScroll <= 200)
+              header.classList.add("compressed");
+            else if (y <= 200 && lastScroll > 200)
+              header.classList.remove("compressed");
+          }
+          lastScroll = y;
+        }
+        window.addEventListener(
+          "scroll",
+          function () {
+            if (scrollPending) return;
+            scrollPending = true;
+            requestAnimationFrame(applyScroll);
+          },
+          { passive: true },
+        );
+
+        // ──────────────────────  Trade form  ──────────────────────
+        var form = document.getElementById("trade-form");
+        if (form) {
+          var submitBtn = document.getElementById("form-submit");
+          var submitLabel = submitBtn.querySelector(".submit-label");
+          var spinner = submitBtn.querySelector(".submit-spinner");
+          var failBox = document.getElementById("form-fail");
+          var successBox = document.getElementById("form-success");
+          var statusText = document.getElementById("form-status");
+
+          function clearErrors() {
+            var rows = form.querySelectorAll(".field-row");
+            rows.forEach(function (r) {
+              r.classList.remove("has-error");
+            });
+            failBox.hidden = true;
+          }
+
+          function markError(name) {
+            var input = form.querySelector('[name="' + name + '"]');
+            if (input) {
+              var row = input.closest(".field-row");
+              if (row) row.classList.add("has-error");
+            }
+          }
+
+          function validate() {
+            clearErrors();
+            var data = new FormData(form);
+            var ok = true;
+            var firstBad = null;
+
+            ["shop", "name", "province", "email"].forEach(function (key) {
+              var val = (data.get(key) || "").toString().trim();
+              var bad = !val;
+              if (key === "email" && val) {
+                bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+              }
+              if (bad) {
+                markError(key);
+                ok = false;
+                if (!firstBad) firstBad = key;
+              }
+            });
+
+            if (!ok && firstBad) {
+              var f = form.querySelector('[name="' + firstBad + '"]');
+              if (f) f.focus();
+            }
+            return ok;
+          }
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (!validate()) return;
+
+            submitBtn.disabled = true;
+            submitLabel.classList.add("hidden");
+            spinner.classList.remove("hidden");
+            statusText.textContent = "Submitting trade enquiry.";
+
+            // Simulated submit: replace this fetch with the real endpoint when wired.
+            // fetch('/api/trade-enquiry', { method: 'POST', body: new FormData(form) })
+            var simulate = new Promise(function (resolve) {
+              setTimeout(function () {
+                resolve({ ok: true });
+              }, 1100);
+            });
+
+            simulate
+              .then(function (res) {
+                if (res.ok) {
+                  form.classList.add("hidden");
+                  successBox.classList.remove("hidden");
+                  statusText.textContent =
+                    "Enquiry received. We will be in touch within two trading days.";
+                  var heading = successBox.querySelector("h3");
+                  if (heading) {
+                    heading.setAttribute("tabindex", "-1");
+                    heading.focus({ preventScroll: false });
+                  }
+                } else {
+                  throw new Error("not ok");
+                }
+              })
+              .catch(function () {
+                submitBtn.disabled = false;
+                submitLabel.classList.remove("hidden");
+                spinner.classList.add("hidden");
+                failBox.hidden = false;
+                statusText.textContent = "Submission failed. Please try again.";
+              });
+          });
+        }
+      })();
+
+      // ──────────────────────  Casa Berro Carousel  ──────────────────────
+      (function () {
+        var track = document.getElementById("cb-track");
+        var viewport = document.getElementById("cb-carousel");
+        var prevBtn = document.getElementById("cb-prev");
+        var nextBtn = document.getElementById("cb-next");
+        var dots = document.querySelectorAll("[data-cb-dot]");
+        if (!track || !viewport) return;
+
+        var slides = track.querySelectorAll(".cb-slide");
+        var total = slides.length;
+        var current = 0;
+        var startX = 0;
+        var isDragging = false;
+
+        function getVisibleCount() {
+          var w = viewport.offsetWidth;
+          if (w >= 1024) return 4;
+          if (w >= 640) return 2;
+          return 1;
+        }
+
+        function getSlideWidth() {
+          return slides[0] ? slides[0].offsetWidth + 20 : 0; // 20 = gap (gap-5)
+        }
+
+        function maxIndex() {
+          return Math.max(0, total - getVisibleCount());
+        }
+
+        function goTo(idx) {
+          current = Math.max(0, Math.min(idx, maxIndex()));
+          track.style.transform =
+            "translateX(-" + current * getSlideWidth() + "px)";
+          prevBtn.disabled = current === 0;
+          nextBtn.disabled = current >= maxIndex();
+          dots.forEach(function (d, i) {
+            var active = i === current;
+            d.setAttribute("aria-selected", active ? "true" : "false");
+            d.classList.toggle("bg-gold", active);
+            d.classList.toggle("bg-parchment/30", !active);
+            d.classList.toggle("w-5", active);
+            d.classList.toggle("h-[3px]", active);
+            d.classList.toggle("rounded-none", active);
+            d.classList.toggle("w-[3px]", !active);
+            d.classList.toggle("h-[3px]", !active);
+            d.classList.toggle("rounded-full", !active);
+          });
+        }
+
+        prevBtn.addEventListener("click", function () {
+          goTo(current - 1);
+        });
+        nextBtn.addEventListener("click", function () {
+          goTo(current + 1);
+        });
+        dots.forEach(function (d) {
+          d.addEventListener("click", function () {
+            goTo(parseInt(d.dataset.cbDot, 10));
+          });
+        });
+
+        // Touch / drag
+        track.addEventListener("mousedown", function (e) {
+          startX = e.clientX;
+          isDragging = true;
+        });
+        track.addEventListener(
+          "touchstart",
+          function (e) {
+            startX = e.touches[0].clientX;
+            isDragging = true;
+          },
+          { passive: true },
+        );
+        function onEnd(endX) {
+          if (!isDragging) return;
+          isDragging = false;
+          var diff = startX - endX;
+          if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        }
+        track.addEventListener("mouseup", function (e) {
+          onEnd(e.clientX);
+        });
+        track.addEventListener("touchend", function (e) {
+          onEnd(e.changedTouches[0].clientX);
+        });
+
+        // Keyboard
+        viewport.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            goTo(current - 1);
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            goTo(current + 1);
+          }
+        });
+
+        // Reflow on resize
+        window.addEventListener(
+          "resize",
+          function () {
+            goTo(current);
+          },
+          { passive: true },
+        );
+
+        goTo(0);
+      })();
+
+      // ──────────────────────  Partner Releases Carousel (Gallery4)  ──────────────────────
+(function () {
+  var track    = document.getElementById('g4-track');
+  var viewport = document.getElementById('g4-carousel');
+  var prevBtn  = document.getElementById('g4-prev');
+  var nextBtn  = document.getElementById('g4-next');
+  var dots     = document.querySelectorAll('[data-g4-dot]');
+  if (!track || !viewport) return;
+
+  var slides  = track.querySelectorAll('.g4-slide');
+  var total   = slides.length;
+  var current = 0;
+  var startX  = 0;
+  var dragging = false;
+
+  function getSlideWidth() {
+    return slides[0] ? slides[0].offsetWidth + 20 : 0;
+  }
+
+  function getOverflow() {
+    return Math.max(0, track.scrollWidth - viewport.clientWidth);
+  }
+
+  function getMaxIndex() {
+    var slideWidth = getSlideWidth();
+    if (slideWidth === 0) return 0;
+    var overflow = getOverflow();
+    if (overflow <= 0) return 0;
+    return Math.min(total - 1, Math.ceil(overflow / slideWidth));
+  }
+
+  function goTo(idx) {
+    var maxIndex = getMaxIndex();
+    var overflow = getOverflow();
+    current = Math.max(0, Math.min(idx, maxIndex));
+    var translate = Math.min(current * getSlideWidth(), overflow);
+    track.style.transform = 'translateX(-' + translate + 'px)';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current >= maxIndex;
+    // When everything fits, hide the nav controls entirely.
+    var allFit = maxIndex === 0;
+    prevBtn.style.display = allFit ? 'none' : '';
+    nextBtn.style.display = allFit ? 'none' : '';
+    dots.forEach(function (d, i) {
+      var reachable = i <= maxIndex;
+      d.style.display = (allFit || !reachable) ? 'none' : '';
+      var active = i === current;
+      d.setAttribute('aria-selected', active ? 'true' : 'false');
+      d.classList.toggle('bg-gold',         active);
+      d.classList.toggle('w-5',             active);
+      d.classList.toggle('h-[3px]',         active);
+      d.classList.toggle('rounded-none',    active);
+      d.classList.toggle('bg-parchment/30', !active);
+      d.classList.toggle('w-[3px]',         !active);
+      d.classList.toggle('rounded-full',    !active);
+    });
+  }
+
+  prevBtn.addEventListener('click', function () { goTo(current - 1); });
+  nextBtn.addEventListener('click', function () { goTo(current + 1); });
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { goTo(parseInt(d.dataset.g4Dot, 10)); });
+  });
+
+  track.addEventListener('mousedown',  function (e) { startX = e.clientX; dragging = true; });
+  track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; dragging = true; }, { passive: true });
+  function onEnd(endX) {
+    if (!dragging) return;
+    dragging = false;
+    if (Math.abs(startX - endX) > 40) goTo(startX - endX > 0 ? current + 1 : current - 1);
+  }
+  track.addEventListener('mouseup',  function (e) { onEnd(e.clientX); });
+  track.addEventListener('touchend', function (e) { onEnd(e.changedTouches[0].clientX); });
+
+  viewport.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  { e.preventDefault(); goTo(current - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1); }
+  });
+
+  window.addEventListener('resize', function () { goTo(current); }, { passive: true });
+
+  goTo(0);
+})();
+    </script>
+  </body>
+</html>
