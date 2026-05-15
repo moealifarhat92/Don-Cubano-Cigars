@@ -517,6 +517,42 @@
       .menu-btn[aria-expanded="true"] .bar:nth-child(3) {
         transform: rotate(-45deg);
       }
+
+      /* ----- Toast ----- */
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 28px;
+        transform: translate(-50%, 12px);
+        background: var(--carbon);
+        color: var(--parchment);
+        border: 1px solid oklch(0.692 0.082 75 / 0.45);
+        padding: 12px 18px;
+        font-size: 13px;
+        letter-spacing: 0.02em;
+        border-radius: 2px;
+        box-shadow: 0 18px 32px -14px oklch(0 0 0 / 0.6);
+        z-index: 200;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 240ms var(--ease-q),
+          transform 240ms var(--ease-q);
+        max-width: calc(100vw - 32px);
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+      .toast .dot {
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 999px;
+        background: var(--gold);
+        margin-right: 10px;
+        transform: translateY(-1px);
+      }
     </style>
   </head>
   <body class="bg-ink text-parchment font-sans">
@@ -1009,9 +1045,10 @@
             </li>
             <li>
               <a
-                href="mailto:trade@doncubano.ca"
+                href="mailto:doncubanotobacco@hotmail.com"
+                data-email="doncubanotobacco@hotmail.com"
                 aria-label="Email trade desk"
-                class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
+                class="js-copy-email inline-flex items-center justify-center h-10 w-10 rounded-full bg-carbon-2 text-parchment hover:bg-carbon hover:text-gold transition-colors duration-200 outline-offset-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold/70"
               >
                 <svg
                   viewBox="0 0 24 24"
@@ -1113,31 +1150,65 @@
       <div class="border-t border-rule/60 mt-10 md:mt-12"></div>
     </footer>
 
+    <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
     <script>
       (function () {
         var btn = document.getElementById("menu-toggle");
         var panel = document.getElementById("mobile-menu");
-        if (!btn || !panel) return;
-        function setMenu(open) {
-          btn.setAttribute("aria-expanded", open ? "true" : "false");
-          btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-          panel.classList.toggle("open", open);
+        if (btn && panel) {
+          function setMenu(open) {
+            btn.setAttribute("aria-expanded", open ? "true" : "false");
+            btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+            panel.classList.toggle("open", open);
+          }
+          btn.addEventListener("click", function () {
+            setMenu(btn.getAttribute("aria-expanded") !== "true");
+          });
+          panel.querySelectorAll("a").forEach(function (a) {
+            a.addEventListener("click", function () {
+              setMenu(false);
+            });
+          });
+          window.addEventListener(
+            "resize",
+            function () {
+              if (window.innerWidth >= 1024) setMenu(false);
+            },
+            { passive: true },
+          );
         }
-        btn.addEventListener("click", function () {
-          setMenu(btn.getAttribute("aria-expanded") !== "true");
-        });
-        panel.querySelectorAll("a").forEach(function (a) {
+
+        // Email copy + toast
+        var toast = document.getElementById("toast");
+        var toastTimer;
+        function showToast(msg) {
+          if (!toast) return;
+          toast.innerHTML =
+            '<span class="dot" aria-hidden="true"></span>' + msg;
+          toast.classList.add("show");
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(function () {
+            toast.classList.remove("show");
+          }, 2400);
+        }
+        document.querySelectorAll(".js-copy-email").forEach(function (a) {
           a.addEventListener("click", function () {
-            setMenu(false);
+            var email = a.dataset.email || "doncubanotobacco@hotmail.com";
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(email).then(
+                function () {
+                  showToast("Email copied · " + email);
+                },
+                function () {
+                  showToast(email);
+                },
+              );
+            } else {
+              showToast(email);
+            }
           });
         });
-        window.addEventListener(
-          "resize",
-          function () {
-            if (window.innerWidth >= 1024) setMenu(false);
-          },
-          { passive: true },
-        );
       })();
     </script>
   </body>
