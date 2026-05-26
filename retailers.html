@@ -224,6 +224,173 @@
         transform: translateY(-1px);
       }
 
+      /* ----- Shiny CTA (gold conic shimmer on ink) ----- */
+      @property --shiny-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @property --shiny-angle-offset {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @property --shiny-percent {
+        syntax: "<percentage>";
+        initial-value: 5%;
+        inherits: false;
+      }
+      @property --shiny-shine {
+        syntax: "<color>";
+        initial-value: oklch(0.892 0.024 81);
+        inherits: false;
+      }
+      .btn-shiny {
+        --shiny-bg: var(--ink);
+        --shiny-bg-subtle: oklch(0.225 0.013 50);
+        --shiny-fg: var(--parchment);
+        --shiny-highlight: var(--gold);
+        --shiny-highlight-subtle: oklch(0.78 0.064 75);
+        --shiny-duration: 5s;
+        --shiny-transition: 700ms cubic-bezier(0.25, 1, 0.5, 1);
+
+        isolation: isolate;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        outline-offset: 4px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background:
+          linear-gradient(var(--shiny-bg), var(--shiny-bg)) padding-box,
+          conic-gradient(
+              from calc(var(--shiny-angle) - var(--shiny-angle-offset)),
+              transparent,
+              var(--shiny-highlight) var(--shiny-percent),
+              var(--shiny-shine) calc(var(--shiny-percent) * 2),
+              var(--shiny-highlight) calc(var(--shiny-percent) * 3),
+              transparent calc(var(--shiny-percent) * 4)
+            )
+            border-box;
+        color: var(--shiny-fg);
+        box-shadow: inset 0 0 0 1px var(--shiny-bg-subtle);
+        transition: var(--shiny-transition);
+        transition-property: --shiny-angle-offset, --shiny-percent, --shiny-shine;
+      }
+      .btn-shiny:hover {
+        transform: none;
+      }
+      .btn-shiny::before,
+      .btn-shiny::after,
+      .btn-shiny > span::before {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+      }
+      .btn-shiny:active {
+        translate: 0 1px;
+      }
+      .btn-shiny::before {
+        --size: calc(100% - 6px);
+        --position: 2px;
+        --space: calc(var(--position) * 2);
+        width: var(--size);
+        height: var(--size);
+        background: radial-gradient(
+            circle at var(--position) var(--position),
+            var(--parchment) calc(var(--position) / 4),
+            transparent 0
+          )
+          padding-box;
+        background-size: var(--space) var(--space);
+        background-repeat: space;
+        mask-image: conic-gradient(
+          from calc(var(--shiny-angle) + 45deg),
+          black,
+          transparent 10% 90%,
+          black
+        );
+        border-radius: inherit;
+        opacity: 0.28;
+      }
+      .btn-shiny::after {
+        width: 100%;
+        aspect-ratio: 1;
+        background: linear-gradient(
+          -50deg,
+          transparent,
+          var(--shiny-highlight),
+          transparent
+        );
+        mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+        opacity: 0.45;
+      }
+      .btn-shiny > span {
+        position: relative;
+        z-index: 1;
+      }
+      .btn-shiny > span::before {
+        --size: calc(100% + 1rem);
+        width: var(--size);
+        height: var(--size);
+        box-shadow: inset 0 -1ex 2rem 4px var(--shiny-highlight);
+        opacity: 0;
+        transition: opacity var(--shiny-transition);
+        animation: calc(var(--shiny-duration) * 1.5) shiny-breathe linear
+          infinite;
+      }
+      .btn-shiny,
+      .btn-shiny::before,
+      .btn-shiny::after {
+        animation:
+          shiny-angle-rotate linear infinite var(--shiny-duration),
+          shiny-angle-rotate calc(var(--shiny-duration) / 0.4) linear infinite
+            reverse paused;
+        animation-composition: add;
+      }
+      .btn-shiny:is(:hover, :focus-visible) {
+        --shiny-percent: 20%;
+        --shiny-angle-offset: 95deg;
+        --shiny-shine: var(--shiny-highlight-subtle);
+      }
+      .btn-shiny:is(:hover, :focus-visible),
+      .btn-shiny:is(:hover, :focus-visible)::before,
+      .btn-shiny:is(:hover, :focus-visible)::after {
+        animation-play-state: running;
+      }
+      .btn-shiny:is(:hover, :focus-visible) > span::before {
+        opacity: 1;
+      }
+      .btn-shiny:focus-visible {
+        outline: 2px solid var(--gold);
+      }
+      @keyframes shiny-angle-rotate {
+        to {
+          --shiny-angle: 360deg;
+        }
+      }
+      @keyframes shiny-breathe {
+        from,
+        to {
+          scale: 1;
+        }
+        50% {
+          scale: 1.2;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .btn-shiny,
+        .btn-shiny::before,
+        .btn-shiny::after,
+        .btn-shiny > span::before {
+          animation: none;
+        }
+      }
+
       .container-tight {
         max-width: 1240px;
         margin-inline: auto;
@@ -751,42 +918,266 @@
         }
       }
 
-      /* ----- Mobile drawer ----- */
-      #mobile-menu {
-        max-height: 0;
+      /* ----- Floating pill header ----- */
+      .float-header-wrap {
+        position: sticky;
+        top: 16px;
+        z-index: 40;
+        padding: 0 16px;
+        pointer-events: none;
+      }
+      .float-header {
+        pointer-events: auto;
+        max-width: 940px;
+        margin: 0 auto;
+        border: 1px solid oklch(0.692 0.082 75 / 0.32);
+        border-radius: 14px;
+        background: oklch(0.165 0.013 50 / 0.82);
         overflow: hidden;
-        transition: max-height 360ms var(--ease-q);
-        background: oklch(0.165 0.013 50 / 0.98);
-        border-top: 1px solid oklch(0.265 0.014 45);
+        backdrop-filter: blur(18px) saturate(1.1);
+        -webkit-backdrop-filter: blur(18px) saturate(1.1);
+        box-shadow:
+          inset 0 1px 0 oklch(0.692 0.082 75 / 0.06),
+          0 14px 36px -22px oklch(0.692 0.082 75 / 0.22),
+          0 22px 50px -28px oklch(0 0 0 / 0.7);
+        transition: transform 320ms var(--ease-q),
+          box-shadow 320ms var(--ease-q);
       }
-      #mobile-menu.open {
-        max-height: 520px;
+      @supports not (backdrop-filter: blur(1px)) {
+        .float-header {
+          background: oklch(0.165 0.013 50 / 0.97);
+        }
       }
-      .mobile-link {
+      .float-nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 0;
-        font-size: 15px;
-        letter-spacing: -0.005em;
+        gap: 10px;
+        padding: 7px 9px;
+      }
+      .float-brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        padding: 6px 10px;
+        border-radius: 8px;
         color: var(--parchment);
-        border-bottom: 1px solid oklch(0.265 0.014 45 / 0.6);
+        transition: background-color 200ms var(--ease-q);
       }
-      .mobile-link:last-of-type {
-        border-bottom: 0;
+      .float-brand:hover {
+        background: oklch(1 0 0 / 0.04);
       }
-      .mobile-link[aria-current="page"] {
+      .float-brand:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .float-brand-name {
+        font-size: 17px;
+        letter-spacing: -0.018em;
+      }
+      .float-brand-eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--dust);
+        display: none;
+      }
+      @media (min-width: 480px) {
+        .float-brand-eyebrow {
+          display: inline;
+        }
+      }
+      .float-links {
+        display: none;
+        align-items: center;
+        gap: 2px;
+      }
+      @media (min-width: 1024px) {
+        .float-links {
+          display: inline-flex;
+        }
+      }
+      .float-nav-link {
+        font-size: 13px;
+        letter-spacing: 0.005em;
+        color: var(--parchment);
+        padding: 8px 12px;
+        border-radius: 7px;
+        transition:
+          background-color 180ms var(--ease-q),
+          color 180ms var(--ease-q);
+      }
+      .float-nav-link:hover {
+        background: oklch(1 0 0 / 0.05);
         color: var(--gold);
       }
-      .mobile-link .arr {
-        opacity: 0.5;
-        font-size: 11px;
-        letter-spacing: 0.22em;
+      .float-nav-link:focus-visible {
+        outline: none;
+        background: oklch(1 0 0 / 0.06);
+        color: var(--gold);
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .float-nav-link[aria-current="page"] {
+        color: var(--gold);
+      }
+      .float-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .float-cta {
+        display: none;
+        align-items: center;
+        font-size: 10.5px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        padding: 9px 16px;
+        border-radius: 8px;
+        background: var(--gold);
+        color: var(--ink);
+        font-weight: 600;
+        transition:
+          background-color 200ms var(--ease-q),
+          transform 200ms var(--ease-q);
+      }
+      @media (min-width: 640px) {
+        .float-cta {
+          display: inline-flex;
+        }
+      }
+      .float-cta:hover {
+        background: oklch(0.742 0.092 75);
+      }
+      .float-cta:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .float-menu-btn {
+        width: 34px;
+        height: 34px;
+        margin-right: 0;
+        border-radius: 8px;
+        border: 1px solid oklch(0.265 0.014 45 / 0.9);
+        background: oklch(1 0 0 / 0.02);
+        transition: background-color 180ms var(--ease-q);
+      }
+      .float-menu-btn:hover {
+        background: oklch(1 0 0 / 0.05);
+      }
+      @media (min-width: 1024px) {
+        .float-menu-btn {
+          display: none;
+        }
+      }
+
+      /* ----- Mobile side drawer ----- */
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        background: oklch(0 0 0 / 0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 60;
+        opacity: 0;
+        transition: opacity 280ms var(--ease-q);
+        pointer-events: none;
+      }
+      .drawer-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(86vw, 360px);
+        background: oklch(0.165 0.013 50 / 0.96);
+        backdrop-filter: blur(18px) saturate(1.1);
+        -webkit-backdrop-filter: blur(18px) saturate(1.1);
+        border-right: 1px solid oklch(0.265 0.014 45);
+        z-index: 70;
+        transform: translateX(-100%);
+        transition: transform 380ms var(--ease-q);
+        display: flex;
+        flex-direction: column;
+        box-shadow:
+          0 22px 60px -24px oklch(0 0 0 / 0.7),
+          inset -1px 0 0 oklch(0.692 0.082 75 / 0.05);
+      }
+      .drawer.open {
+        transform: translateX(0);
+      }
+      .drawer-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .drawer-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 24px 22px 18px;
+        border-bottom: 1px solid oklch(0.265 0.014 45 / 0.6);
+      }
+      .drawer-brand {
+        font-size: 20px;
+        color: var(--parchment);
+        letter-spacing: -0.018em;
+      }
+      .drawer-eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--dust);
       }
-      .mobile-link:active {
+      .drawer-nav {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        padding: 10px 10px;
+      }
+      .drawer-link {
+        display: block;
+        padding: 14px 14px;
+        font-size: 15px;
+        letter-spacing: -0.005em;
+        color: var(--parchment);
+        border-radius: 8px;
+        transition:
+          background-color 180ms var(--ease-q),
+          color 180ms var(--ease-q);
+      }
+      .drawer-link:hover {
+        background: oklch(1 0 0 / 0.04);
         color: var(--gold);
+      }
+      .drawer-link:focus-visible {
+        outline: none;
+        background: oklch(1 0 0 / 0.05);
+        color: var(--gold);
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .drawer-link[aria-current="page"] {
+        color: var(--gold);
+      }
+      .drawer-footer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 16px 16px 22px;
+        border-top: 1px solid oklch(0.265 0.014 45 / 0.6);
+      }
+      .drawer-foot-btn {
+        justify-content: center;
+        width: 100%;
       }
       .menu-btn {
         display: inline-flex;
@@ -868,84 +1259,86 @@
   </head>
 
   <body class="bg-ink text-parchment font-sans">
-    <!-- ────────────  HEADER  ──────────── -->
-    <header
-      id="site-header"
-      class="sticky top-0 z-40 bg-ink/95 supports-[backdrop-filter]:bg-ink/85 supports-[backdrop-filter]:backdrop-blur-sm border-b border-rule/60"
-    >
-      <div class="container-tight">
-        <div
-          class="header-inner h-[66px] lg:h-[78px] flex items-center justify-between gap-6"
-        >
+    <!-- ────────────  FLOATING HEADER  ──────────── -->
+    <div class="float-header-wrap">
+      <header id="site-header" class="float-header" aria-label="Site">
+        <nav class="float-nav" aria-label="Primary">
           <a
             href="index.html"
-            class="flex items-baseline gap-3 shrink-0"
+            class="float-brand"
             aria-label="Don Cubano Cigars, home"
           >
-            <span class="serif text-[20px] sm:text-[22px] tracking-[-0.018em]"
-              >Don Cubano</span
-            >
-            <span
-              class="text-[11px] tracking-[0.28em] uppercase text-dust hidden sm:inline"
-              >Cigars</span
-            >
+            <span class="serif float-brand-name">Don Cubano</span>
+            <span class="float-brand-eyebrow">Cigars</span>
           </a>
-          <nav
-            class="hidden lg:flex items-center gap-9 text-[13.5px] text-parchment/90"
-            aria-label="Primary"
-          >
-            <a href="index.html#house" class="nav-link">About Us</a>
-            <a href="index.html#casaberro" class="nav-link">Casa Berro</a>
-            <a href="blend-your-own.html" class="nav-link">Blend Your Own</a>
-            <a href="retailers.html" class="nav-link" aria-current="page"
+          <div class="float-links">
+            <a href="index.html#house" class="float-nav-link">About Us</a>
+            <a href="index.html#casaberro" class="float-nav-link">Casa Berro</a>
+            <a href="blend-your-own.html" class="float-nav-link"
+              >Blend Your Own</a
+            >
+            <a
+              href="retailers.html"
+              class="float-nav-link"
+              aria-current="page"
               >Our Retailers</a
             >
-          </nav>
+          </div>
+          <div class="float-actions">
+            <a href="index.html#contact" class="float-cta btn-shiny"
+              ><span>Open an account</span></a
+            >
+            <button
+              type="button"
+              id="menu-toggle"
+              class="menu-btn float-menu-btn"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              aria-label="Open menu"
+            >
+              <span class="bar" aria-hidden="true"></span>
+              <span class="bar" aria-hidden="true"></span>
+              <span class="bar" aria-hidden="true"></span>
+            </button>
+          </div>
+        </nav>
+      </header>
+    </div>
+
+    <!-- ────────────  MOBILE DRAWER  ──────────── -->
+    <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+    <aside
+      id="mobile-menu"
+      class="drawer"
+      aria-label="Primary navigation, mobile"
+      hidden
+    >
+      <div class="drawer-inner">
+        <div class="drawer-head">
+          <span class="serif drawer-brand">Don Cubano</span>
+          <span class="drawer-eyebrow">Cigars</span>
+        </div>
+        <nav class="drawer-nav" aria-label="Primary mobile">
+          <a href="index.html#house" class="drawer-link">About Us</a>
+          <a href="index.html#casaberro" class="drawer-link">Casa Berro</a>
+          <a href="blend-your-own.html" class="drawer-link">Blend Your Own</a>
           <a
-            href="index.html#contact"
-            class="btn-line text-[11px] py-3 hidden lg:inline-flex"
-            >Open an account</a
+            href="retailers.html"
+            class="drawer-link"
+            aria-current="page"
+            >Our Retailers</a
           >
-          <button
-            type="button"
-            id="menu-toggle"
-            class="menu-btn relative lg:hidden"
-            aria-controls="mobile-menu"
-            aria-expanded="false"
-            aria-label="Open menu"
+        </nav>
+        <div class="drawer-footer">
+          <a href="index.html#contact" class="btn-line btn-shiny drawer-foot-btn"
+            ><span>Trade enquiries</span></a
           >
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-            <span class="bar" aria-hidden="true"></span>
-          </button>
+          <a href="index.html#contact" class="btn-solid btn-shiny drawer-foot-btn"
+            ><span>Open an account</span></a
+          >
         </div>
       </div>
-      <nav
-        id="mobile-menu"
-        class="lg:hidden"
-        aria-label="Primary navigation, mobile"
-      >
-        <div class="container-tight py-2">
-          <a href="index.html#house" class="mobile-link">
-            <span>About Us</span><span class="arr">01</span>
-          </a>
-          <a href="index.html#casaberro" class="mobile-link">
-            <span>Casa Berro</span><span class="arr">02</span>
-          </a>
-          <a href="blend-your-own.html" class="mobile-link">
-            <span>Blend Your Own</span><span class="arr">03</span>
-          </a>
-          <a href="retailers.html" class="mobile-link" aria-current="page">
-            <span>Our Retailers</span><span class="arr">04</span>
-          </a>
-          <a
-            href="index.html#contact"
-            class="btn-solid mt-5 mb-4 w-full justify-center"
-            >Open an account</a
-          >
-        </div>
-      </nav>
-    </header>
+    </aside>
 
     <main id="main">
       <!-- ════════════════  OUR RETAILERS · single section  ════════════════ -->
@@ -1124,8 +1517,8 @@
           </div>
           <a
             href="index.html#contact"
-            class="btn-line text-[11px] py-3 hidden sm:inline-flex"
-            >Open an account</a
+            class="btn-line btn-shiny text-[11px] py-3 hidden sm:inline-flex"
+            ><span>Open an account</span></a
           >
         </div>
       </div>
@@ -1305,18 +1698,53 @@
     <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
 
     <script>
-      // ─── Mobile menu toggle ────────────────────────────────────────
+      // ─── Mobile drawer toggle ────────────────────────────────────────
       (function () {
         var btn = document.getElementById("menu-toggle");
         var panel = document.getElementById("mobile-menu");
-        if (btn && panel) {
+        var backdrop = document.getElementById("drawer-backdrop");
+        if (btn && panel && backdrop) {
+          var hideTimer = null;
           function setMenu(open) {
             btn.setAttribute("aria-expanded", open ? "true" : "false");
             btn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-            panel.classList.toggle("open", open);
+            if (open) {
+              if (hideTimer) {
+                clearTimeout(hideTimer);
+                hideTimer = null;
+              }
+              panel.hidden = false;
+              backdrop.hidden = false;
+              void panel.offsetWidth;
+              panel.classList.add("open");
+              backdrop.classList.add("open");
+              document.documentElement.style.overflow = "hidden";
+            } else {
+              panel.classList.remove("open");
+              backdrop.classList.remove("open");
+              document.documentElement.style.overflow = "";
+              hideTimer = setTimeout(function () {
+                if (!panel.classList.contains("open")) {
+                  panel.hidden = true;
+                  backdrop.hidden = true;
+                }
+                hideTimer = null;
+              }, 400);
+            }
           }
           btn.addEventListener("click", function () {
             setMenu(btn.getAttribute("aria-expanded") !== "true");
+          });
+          backdrop.addEventListener("click", function () {
+            setMenu(false);
+          });
+          document.addEventListener("keydown", function (e) {
+            if (
+              e.key === "Escape" &&
+              btn.getAttribute("aria-expanded") === "true"
+            ) {
+              setMenu(false);
+            }
           });
           panel.querySelectorAll("a").forEach(function (a) {
             a.addEventListener("click", function () {

@@ -372,6 +372,173 @@
         cursor: not-allowed;
       }
 
+      /* ----- Shiny CTA (gold conic shimmer on ink) ----- */
+      @property --shiny-angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @property --shiny-angle-offset {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+      @property --shiny-percent {
+        syntax: "<percentage>";
+        initial-value: 5%;
+        inherits: false;
+      }
+      @property --shiny-shine {
+        syntax: "<color>";
+        initial-value: oklch(0.892 0.024 81);
+        inherits: false;
+      }
+      .btn-shiny {
+        --shiny-bg: var(--ink);
+        --shiny-bg-subtle: oklch(0.225 0.013 50);
+        --shiny-fg: var(--parchment);
+        --shiny-highlight: var(--gold);
+        --shiny-highlight-subtle: oklch(0.78 0.064 75);
+        --shiny-duration: 5s;
+        --shiny-transition: 700ms cubic-bezier(0.25, 1, 0.5, 1);
+
+        isolation: isolate;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        outline-offset: 4px;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        background:
+          linear-gradient(var(--shiny-bg), var(--shiny-bg)) padding-box,
+          conic-gradient(
+              from calc(var(--shiny-angle) - var(--shiny-angle-offset)),
+              transparent,
+              var(--shiny-highlight) var(--shiny-percent),
+              var(--shiny-shine) calc(var(--shiny-percent) * 2),
+              var(--shiny-highlight) calc(var(--shiny-percent) * 3),
+              transparent calc(var(--shiny-percent) * 4)
+            )
+            border-box;
+        color: var(--shiny-fg);
+        box-shadow: inset 0 0 0 1px var(--shiny-bg-subtle);
+        transition: var(--shiny-transition);
+        transition-property: --shiny-angle-offset, --shiny-percent, --shiny-shine;
+      }
+      .btn-shiny::before,
+      .btn-shiny::after,
+      .btn-shiny > span::before {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        inset-inline-start: 50%;
+        inset-block-start: 50%;
+        translate: -50% -50%;
+        z-index: -1;
+      }
+      .btn-shiny:active {
+        translate: 0 1px;
+      }
+      /* Dots pattern (subtle parchment dots inside the pill) */
+      .btn-shiny::before {
+        --size: calc(100% - 6px);
+        --position: 2px;
+        --space: calc(var(--position) * 2);
+        width: var(--size);
+        height: var(--size);
+        background: radial-gradient(
+            circle at var(--position) var(--position),
+            var(--parchment) calc(var(--position) / 4),
+            transparent 0
+          )
+          padding-box;
+        background-size: var(--space) var(--space);
+        background-repeat: space;
+        mask-image: conic-gradient(
+          from calc(var(--shiny-angle) + 45deg),
+          black,
+          transparent 10% 90%,
+          black
+        );
+        border-radius: inherit;
+        opacity: 0.28;
+      }
+      /* Inner gold shimmer */
+      .btn-shiny::after {
+        width: 100%;
+        aspect-ratio: 1;
+        background: linear-gradient(
+          -50deg,
+          transparent,
+          var(--shiny-highlight),
+          transparent
+        );
+        mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+        opacity: 0.45;
+      }
+      .btn-shiny > span {
+        position: relative;
+        z-index: 1;
+      }
+      /* Hover-only breathing inner glow */
+      .btn-shiny > span::before {
+        --size: calc(100% + 1rem);
+        width: var(--size);
+        height: var(--size);
+        box-shadow: inset 0 -1ex 2rem 4px var(--shiny-highlight);
+        opacity: 0;
+        transition: opacity var(--shiny-transition);
+        animation: calc(var(--shiny-duration) * 1.5) shiny-breathe linear
+          infinite;
+      }
+      .btn-shiny,
+      .btn-shiny::before,
+      .btn-shiny::after {
+        animation:
+          shiny-angle-rotate linear infinite var(--shiny-duration),
+          shiny-angle-rotate calc(var(--shiny-duration) / 0.4) linear infinite
+            reverse paused;
+        animation-composition: add;
+      }
+      .btn-shiny:is(:hover, :focus-visible) {
+        --shiny-percent: 20%;
+        --shiny-angle-offset: 95deg;
+        --shiny-shine: var(--shiny-highlight-subtle);
+      }
+      .btn-shiny:is(:hover, :focus-visible),
+      .btn-shiny:is(:hover, :focus-visible)::before,
+      .btn-shiny:is(:hover, :focus-visible)::after {
+        animation-play-state: running;
+      }
+      .btn-shiny:is(:hover, :focus-visible) > span::before {
+        opacity: 1;
+      }
+      .btn-shiny:focus-visible {
+        outline: 2px solid var(--gold);
+      }
+      @keyframes shiny-angle-rotate {
+        to {
+          --shiny-angle: 360deg;
+        }
+      }
+      @keyframes shiny-breathe {
+        from,
+        to {
+          scale: 1;
+        }
+        50% {
+          scale: 1.2;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .btn-shiny,
+        .btn-shiny::before,
+        .btn-shiny::after,
+        .btn-shiny > span::before {
+          animation: none;
+        }
+      }
+
       /* ----- Underlined Links ----- */
       .ulink {
         color: var(--parchment);
@@ -598,16 +765,159 @@
         animation: drift 1400ms var(--ease-x) both;
       }
 
-      /* ----- Header scroll compression ----- */
-      header.compressed {
-        padding-top: 4px;
-        padding-bottom: 4px;
+      /* ----- Floating pill header ----- */
+      .float-header-wrap {
+        position: sticky;
+        top: 16px;
+        z-index: 40;
+        padding: 0 16px;
+        pointer-events: none;
       }
-      header.compressed .header-inner {
-        height: 60px;
+      .float-header {
+        pointer-events: auto;
+        max-width: 940px;
+        margin: 0 auto;
+        border: 1px solid oklch(0.692 0.082 75 / 0.32);
+        border-radius: 14px;
+        background: oklch(0.165 0.013 50 / 0.82);
+        overflow: hidden;
+        backdrop-filter: blur(18px) saturate(1.1);
+        -webkit-backdrop-filter: blur(18px) saturate(1.1);
+        box-shadow:
+          inset 0 1px 0 oklch(0.692 0.082 75 / 0.06),
+          0 14px 36px -22px oklch(0.692 0.082 75 / 0.22),
+          0 22px 50px -28px oklch(0 0 0 / 0.7);
+        transition: transform 320ms var(--ease-q),
+          box-shadow 320ms var(--ease-q);
       }
-      .header-inner {
-        transition: height 320ms var(--ease-q);
+      @supports not (backdrop-filter: blur(1px)) {
+        .float-header {
+          background: oklch(0.165 0.013 50 / 0.97);
+        }
+      }
+      .float-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 7px 9px;
+      }
+      .float-brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        color: var(--parchment);
+        transition: background-color 200ms var(--ease-q);
+      }
+      .float-brand:hover {
+        background: oklch(1 0 0 / 0.04);
+      }
+      .float-brand:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .float-brand-name {
+        font-size: 17px;
+        letter-spacing: -0.018em;
+      }
+      .float-brand-eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--dust);
+        display: none;
+      }
+      @media (min-width: 480px) {
+        .float-brand-eyebrow {
+          display: inline;
+        }
+      }
+      .float-links {
+        display: none;
+        align-items: center;
+        gap: 2px;
+      }
+      @media (min-width: 1024px) {
+        .float-links {
+          display: inline-flex;
+        }
+      }
+      .float-nav-link {
+        font-size: 13px;
+        letter-spacing: 0.005em;
+        color: var(--parchment);
+        padding: 8px 12px;
+        border-radius: 7px;
+        transition:
+          background-color 180ms var(--ease-q),
+          color 180ms var(--ease-q);
+      }
+      .float-nav-link:hover {
+        background: oklch(1 0 0 / 0.05);
+        color: var(--gold);
+      }
+      .float-nav-link:focus-visible {
+        outline: none;
+        background: oklch(1 0 0 / 0.06);
+        color: var(--gold);
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .float-actions {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .float-cta {
+        display: none;
+        align-items: center;
+        font-size: 10.5px;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        padding: 9px 16px;
+        border-radius: 8px;
+        background: var(--gold);
+        color: var(--ink);
+        font-weight: 600;
+        transition:
+          background-color 200ms var(--ease-q),
+          transform 200ms var(--ease-q);
+      }
+      @media (min-width: 640px) {
+        .float-cta {
+          display: inline-flex;
+        }
+      }
+      .float-cta:hover {
+        background: oklch(0.742 0.092 75);
+      }
+      .float-cta:focus-visible {
+        outline: none;
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .float-menu-btn {
+        width: 34px;
+        height: 34px;
+        margin-right: 0;
+        border-radius: 8px;
+        border: 1px solid oklch(0.265 0.014 45 / 0.9);
+        background: oklch(1 0 0 / 0.02);
+        transition: background-color 180ms var(--ease-q);
+      }
+      .float-menu-btn:hover {
+        background: oklch(1 0 0 / 0.05);
+      }
+      @media (min-width: 1024px) {
+        .float-menu-btn {
+          display: none;
+        }
       }
 
       /* ----- Hero bleed image (desktop) ----- */
@@ -767,7 +1077,9 @@
           transition: none !important;
           transform: none !important;
         }
-        .header-inner {
+        .float-header,
+        .drawer,
+        .drawer-backdrop {
           transition: none !important;
         }
         * {
@@ -897,39 +1209,237 @@
         background: oklch(0.22 0.011 47 / 0.4);
       }
 
-      /* ----- Mobile drawer ----- */
-      #mobile-menu {
-        max-height: 0;
+      /* ----- Hero section (Section 1) ----- */
+      .hero-marquee-section {
+        position: relative;
         overflow: hidden;
-        transition: max-height 360ms var(--ease-q);
-        background: oklch(0.165 0.013 50 / 0.98);
-        border-top: 1px solid oklch(0.265 0.014 45);
-      }
-      #mobile-menu.open {
-        max-height: 520px;
-      }
-      .mobile-link {
         display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: space-between;
-        padding: 16px 0;
-        font-size: 15px;
-        letter-spacing: -0.005em;
-        color: var(--parchment);
-        border-bottom: 1px solid oklch(0.265 0.014 45 / 0.6);
+        justify-content: flex-start;
+        text-align: center;
+        padding: 96px 24px 80px;
       }
-      .mobile-link:last-of-type {
-        border-bottom: 0;
+      @media (min-width: 768px) {
+        .hero-marquee-section {
+          min-height: 100vh;
+          min-height: 100svh;
+          justify-content: center;
+          padding: 160px 32px 140px;
+        }
       }
-      .mobile-link .arr {
-        opacity: 0.5;
+      .hero-bg-picture {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: block;
+        pointer-events: none;
+      }
+      .hero-bg-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: saturate(0.82) contrast(1.05) brightness(0.66);
+      }
+      .hero-bg-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            ellipse 78% 60% at 50% 45%,
+            oklch(0.165 0.013 50 / 0.35) 0%,
+            oklch(0.165 0.013 50 / 0.62) 60%,
+            oklch(0.165 0.013 50 / 0.82) 100%
+          ),
+          linear-gradient(
+            180deg,
+            oklch(0.165 0.013 50 / 0.55) 0%,
+            transparent 18%,
+            transparent 70%,
+            var(--ink) 100%
+          );
+      }
+      .hero-marquee-content {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 740px;
+        margin: 0 auto;
+      }
+      .hero-tag-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 16px;
+        border: 1px solid oklch(0.265 0.014 45 / 0.9);
+        border-radius: 999px;
+        background: oklch(0.165 0.013 50 / 0.55);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
         font-size: 11px;
-        letter-spacing: 0.22em;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: var(--dust);
       }
-      .mobile-link:active {
+      .hero-marquee-title {
+        margin-top: 28px;
+        font-family: "Spectral", "Libre Baskerville", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(40px, 7vw, 78px);
+        line-height: 1.02;
+        letter-spacing: -0.035em;
+        color: var(--parchment);
+        max-width: 16ch;
+      }
+      .hero-marquee-title .serif-i {
+        font-style: italic;
+      }
+      .hero-marquee-title .word-rise {
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(14px);
+        animation: hero-word-rise 720ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      @keyframes hero-word-rise {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-marquee-desc {
+        margin-top: 22px;
+        font-size: 15px;
+        line-height: 1.75;
+        color: oklch(0.892 0.024 81 / 0.82);
+        max-width: 54ch;
+      }
+      @media (min-width: 640px) {
+        .hero-marquee-desc {
+          font-size: 16.5px;
+        }
+      }
+      .hero-marquee-cta {
+        margin-top: 36px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-marquee-title .word-rise {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ----- Mobile side drawer ----- */
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        background: oklch(0 0 0 / 0.55);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 60;
+        opacity: 0;
+        transition: opacity 280ms var(--ease-q);
+        pointer-events: none;
+      }
+      .drawer-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .drawer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(86vw, 360px);
+        background: oklch(0.165 0.013 50 / 0.96);
+        backdrop-filter: blur(18px) saturate(1.1);
+        -webkit-backdrop-filter: blur(18px) saturate(1.1);
+        border-right: 1px solid oklch(0.265 0.014 45);
+        z-index: 70;
+        transform: translateX(-100%);
+        transition: transform 380ms var(--ease-q);
+        display: flex;
+        flex-direction: column;
+        box-shadow:
+          0 22px 60px -24px oklch(0 0 0 / 0.7),
+          inset -1px 0 0 oklch(0.692 0.082 75 / 0.05);
+      }
+      .drawer.open {
+        transform: translateX(0);
+      }
+      .drawer-inner {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .drawer-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        padding: 24px 22px 18px;
+        border-bottom: 1px solid oklch(0.265 0.014 45 / 0.6);
+      }
+      .drawer-brand {
+        font-size: 20px;
+        color: var(--parchment);
+        letter-spacing: -0.018em;
+      }
+      .drawer-eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--dust);
+      }
+      .drawer-nav {
+        flex: 1 1 auto;
+        overflow-y: auto;
+        padding: 10px 10px;
+      }
+      .drawer-link {
+        display: block;
+        padding: 14px 14px;
+        font-size: 15px;
+        letter-spacing: -0.005em;
+        color: var(--parchment);
+        border-radius: 8px;
+        transition:
+          background-color 180ms var(--ease-q),
+          color 180ms var(--ease-q);
+      }
+      .drawer-link:hover {
+        background: oklch(1 0 0 / 0.04);
         color: var(--gold);
+      }
+      .drawer-link:focus-visible {
+        outline: none;
+        background: oklch(1 0 0 / 0.05);
+        color: var(--gold);
+        box-shadow:
+          0 0 0 2px var(--ink),
+          0 0 0 3px var(--gold);
+      }
+      .drawer-footer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 16px 16px 22px;
+        border-top: 1px solid oklch(0.265 0.014 45 / 0.6);
+      }
+      .drawer-foot-btn {
+        justify-content: center;
+        width: 100%;
       }
       .menu-btn {
         display: inline-flex;
@@ -1070,80 +1580,35 @@
           <div class="max-w-[480px]">
             <div class="eyebrow mb-7">
               <span class="text-gold">●</span
-              ><span class="ml-3">Age verification, Canada</span>
+              ><span class="ml-3">Age verification</span>
             </div>
 
             <h1 id="ag-title" class="h-display disp-h2-sm mb-7">
-              Before you enter, a quiet question.
+              Are you 19 or older?
             </h1>
 
             <p id="ag-desc" class="text-[15px] leading-[1.7] text-parchment/80">
               Don Cubano supplies licensed Canadian cigar retailers. By
-              continuing, you confirm you are at or above the legal smoking age
-              in your province.
+              entering, you confirm you are at least 19 years of age.
             </p>
 
             <form id="ag-form" class="mt-10" novalidate>
-              <label for="ag-province" class="eyebrow block mb-3"
-                >Your province</label
-              >
-              <select
-                id="ag-province"
-                name="province"
-                class="field"
-                required
-                aria-describedby="ag-province-error"
-              >
-                <option value="">Select province</option>
-                <option value="AB">Alberta (18)</option>
-                <option value="BC">British Columbia (19)</option>
-                <option value="MB">Manitoba (18)</option>
-                <option value="NB">New Brunswick (19)</option>
-                <option value="NL">Newfoundland and Labrador (19)</option>
-                <option value="NS">Nova Scotia (19)</option>
-                <option value="NT">Northwest Territories (18)</option>
-                <option value="NU">Nunavut (19)</option>
-                <option value="ON">Ontario (19)</option>
-                <option value="PE">Prince Edward Island (19)</option>
-                <option value="QC">Quebec (18)</option>
-                <option value="SK">Saskatchewan (18)</option>
-                <option value="YT">Yukon (19)</option>
-              </select>
               <div
-                id="ag-province-error"
-                class="field-error"
-                aria-live="polite"
-              ></div>
-
-              <label class="flex items-start gap-3 mt-7 cursor-pointer">
-                <input
-                  type="checkbox"
-                  id="ag-confirm"
-                  class="mt-[5px] accent-[oklch(0.692_0.082_75)]"
-                  required
-                />
-                <span class="text-[13.5px] leading-[1.65] text-parchment/85">
-                  I am at or above the legal smoking age in my province.
-                </span>
-              </label>
-
-              <div
-                class="flex flex-col-reverse sm:flex-row sm:items-center gap-4 mt-10"
+                class="flex flex-col-reverse sm:flex-row sm:items-center gap-4"
               >
                 <button
                   type="button"
                   id="ag-decline"
                   class="btn-line w-full sm:w-auto justify-center"
                 >
-                  Decline
+                  I am under 19
                 </button>
                 <button
                   type="submit"
                   id="ag-submit"
                   class="btn-solid flex-1 justify-center"
-                  disabled
                 >
-                  Confirm and enter
+                  Yes, I am 19 or older
                 </button>
               </div>
             </form>
@@ -1207,9 +1672,8 @@
               Don Cubano supplies licensed retailers.
             </h2>
             <p class="text-[15px] leading-[1.75] text-parchment/80">
-              We are not the right destination today. If a province dropdown was
-              selected in error, the verification can be retried by refreshing
-              the page.
+              We are not the right destination today. If this was selected in
+              error, the verification can be retried by refreshing the page.
             </p>
             <p class="mt-9 text-[13px] tracking-[0.18em] uppercase text-dust">
               Trade enquiries:
@@ -1229,267 +1693,155 @@
      SITE
      ══════════════════════════════════════════════════════════ -->
     <div id="site" hidden>
-      <!-- ────────────  HEADER  ──────────── -->
-      <header
-        id="site-header"
-        class="relative z-40 bg-ink/95 supports-[backdrop-filter]:bg-ink/85 supports-[backdrop-filter]:backdrop-blur-sm border-b border-rule/60"
-      >
-        <div class="container-tight">
-          <div
-            class="header-inner h-[66px] lg:h-[78px] flex items-center justify-between gap-6"
-          >
+      <!-- ────────────  FLOATING HEADER  ──────────── -->
+      <div class="float-header-wrap">
+        <header
+          id="site-header"
+          class="float-header"
+          aria-label="Site"
+        >
+          <nav class="float-nav" aria-label="Primary">
             <a
               href="#"
-              class="flex items-baseline gap-3 shrink-0"
+              class="float-brand"
               aria-label="Don Cubano Cigars, home"
             >
-              <span class="serif text-[20px] sm:text-[22px] tracking-[-0.018em]"
-                >Don Cubano</span
-              >
-              <span
-                class="text-[11px] tracking-[0.28em] uppercase text-dust hidden sm:inline"
-                >Cigars</span
-              >
+              <span class="serif float-brand-name">Don Cubano</span>
+              <span class="float-brand-eyebrow">Cigars</span>
             </a>
-            <nav
-              class="hidden lg:flex items-center gap-9 text-[13.5px] text-parchment/90"
-              aria-label="Primary"
+            <div class="float-links">
+              <a href="#house" class="float-nav-link">About Us</a>
+              <a href="#casaberro" class="float-nav-link">Casa Berro</a>
+              <a href="blend-your-own.html" class="float-nav-link">Blend Your Own</a>
+              <a href="retailers.html" class="float-nav-link">Our Retailers</a>
+            </div>
+            <div class="float-actions">
+              <a href="#contact" class="float-cta btn-shiny"
+                ><span>Open an account</span></a
+              >
+              <button
+                type="button"
+                id="menu-toggle"
+                class="menu-btn float-menu-btn"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+                aria-label="Open menu"
+              >
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+                <span class="bar" aria-hidden="true"></span>
+              </button>
+            </div>
+          </nav>
+        </header>
+      </div>
+
+      <!-- ────────────  MOBILE DRAWER  ──────────── -->
+      <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+      <aside
+        id="mobile-menu"
+        class="drawer"
+        aria-label="Primary navigation, mobile"
+        hidden
+      >
+        <div class="drawer-inner">
+          <div class="drawer-head">
+            <span class="serif drawer-brand">Don Cubano</span>
+            <span class="drawer-eyebrow">Cigars</span>
+          </div>
+          <nav class="drawer-nav" aria-label="Primary mobile">
+            <a href="#house" class="drawer-link">About Us</a>
+            <a href="#casaberro" class="drawer-link">Casa Berro</a>
+            <a href="blend-your-own.html" class="drawer-link">Blend Your Own</a>
+            <a href="retailers.html" class="drawer-link">Our Retailers</a>
+          </nav>
+          <div class="drawer-footer">
+            <a href="#contact" class="btn-line btn-shiny drawer-foot-btn"
+              ><span>Trade enquiries</span></a
             >
-              <a href="#house" class="nav-link">About Us</a>
-              <a href="#casaberro" class="nav-link">Casa Berro</a>
-              <a href="blend-your-own.html" class="nav-link">Blend Your Own</a>
-              <a href="retailers.html" class="nav-link">Our Retailers</a>
-            </nav>
-            <a
-              href="#contact"
-              class="btn-line text-[11px] py-3 hidden lg:inline-flex"
-              >Open an account</a
+            <a href="#contact" class="btn-solid btn-shiny drawer-foot-btn"
+              ><span>Open an account</span></a
             >
-            <button
-              type="button"
-              id="menu-toggle"
-              class="menu-btn relative lg:hidden"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-              aria-label="Open menu"
-            >
-              <span class="bar" aria-hidden="true"></span>
-              <span class="bar" aria-hidden="true"></span>
-              <span class="bar" aria-hidden="true"></span>
-            </button>
           </div>
         </div>
-        <nav
-          id="mobile-menu"
-          class="lg:hidden"
-          aria-label="Primary navigation, mobile"
-        >
-          <div class="container-tight py-2">
-            <a href="#house" class="mobile-link">
-              <span>About Us</span><span class="arr">01</span>
-            </a>
-            <a href="#casaberro" class="mobile-link">
-              <span>Casa Berro</span><span class="arr">02</span>
-            </a>
-            <a href="blend-your-own.html" class="mobile-link">
-              <span>Blend Your Own</span><span class="arr">03</span>
-            </a>
-            <a href="retailers.html" class="mobile-link">
-              <span>Our Retailers</span><span class="arr">04</span>
-            </a>
-            <a
-              href="#contact"
-              class="btn-solid mt-5 mb-4 w-full justify-center"
-              >Open an account</a
-            >
-          </div>
-        </nav>
-      </header>
+      </aside>
 
       <!-- ════════════════════════════════════════════════════════════
        MAIN
        ════════════════════════════════════════════════════════════ -->
       <main id="main">
         <!-- ════════════════  SECTION 1 · OPENING SPREAD  ════════════════ -->
-        <section class="relative overflow-hidden">
-          <!-- Full-bleed background image, same overlay approach as house-intro -->
-          <img
-            src="brand_assets/opt/13-1024.jpg"
-            srcset="
-              brand_assets/opt/13-640.jpg   640w,
-              brand_assets/opt/13-1024.jpg 1024w,
-              brand_assets/opt/13-1600.jpg 1600w
-            "
-            sizes="100vw"
-            alt=""
-            aria-hidden="true"
-            class="absolute inset-0 w-full h-full object-cover"
-            style="filter: saturate(0.85) contrast(1.04) brightness(0.72)"
-            width="1600"
-            height="2400"
-            decoding="async"
-            fetchpriority="high"
-          />
+        <section class="hero-marquee-section" style="background: var(--ink)">
+          <!-- Full-bleed background image -->
+          <picture class="hero-bg-picture" aria-hidden="true">
+            <source
+              type="image/webp"
+              srcset="
+                brand_assets/opt/13-640.webp   640w,
+                brand_assets/opt/13-1024.webp 1024w,
+                brand_assets/opt/13-1600.webp 1600w
+              "
+              sizes="100vw"
+            />
+            <img
+              src="brand_assets/opt/13-1024.jpg"
+              srcset="
+                brand_assets/opt/13-640.jpg   640w,
+                brand_assets/opt/13-1024.jpg 1024w,
+                brand_assets/opt/13-1600.jpg 1600w
+              "
+              sizes="100vw"
+              alt=""
+              width="1600"
+              height="2400"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+          <!-- Darken + radial vignette overlay for legibility -->
+          <div class="hero-bg-overlay" aria-hidden="true"></div>
 
-          <!-- Overlay: radial center darken + top/bottom fade to ink, matching house-intro -->
-          <div
-            class="absolute inset-0 pointer-events-none"
-            style="
-              background:
-                radial-gradient(
-                  ellipse at center,
-                  oklch(0.165 0.013 50 / 0.38) 0%,
-                  oklch(0.165 0.013 50 / 0.62) 60%,
-                  oklch(0.165 0.013 50 / 0.78) 100%
-                ),
-                linear-gradient(
-                  180deg,
-                  var(--ink) 0%,
-                  transparent 14%,
-                  transparent 80%,
-                  var(--ink) 100%
-                );
-              z-index: 1;
-            "
-          ></div>
+          <!-- Centered content -->
+          <div class="hero-marquee-content">
+            <span class="hero-tag-pill rise rise-1">
+              Wholesale &middot; Canada &middot; Since 2008
+            </span>
 
-          <div class="container-tight relative" style="z-index: 2">
-            <div
-              class="flex flex-col items-center text-center pt-14 sm:pt-24 lg:pt-36 pb-12 sm:pb-16 lg:pb-24"
-            >
-              <div
-                class="rise rise-1 inline-flex items-center gap-3 eyebrow mb-7"
+            <h1 class="hero-marquee-title">
+              <span class="word-rise" style="animation-delay: 180ms">A</span>
+              <span
+                class="word-rise serif-i text-gold"
+                style="animation-delay: 280ms"
+                >Trusted</span
               >
-                <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
-                <span>Wholesale · Canada · Since 2008</span>
-                <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
-              </div>
-
-              <h1
-                class="rise rise-2 h-display h-display-tight disp-h2 max-w-[22ch]"
+              <span class="word-rise" style="animation-delay: 380ms"
+                >partner,</span
               >
-                Don Cubano Cigars, a
-                <span class="serif-i text-gold">Trusted</span> Wholesale Cigar
-                Partner Since 2008.
-              </h1>
+              <span class="word-rise" style="animation-delay: 480ms">since</span>
+              <span class="word-rise" style="animation-delay: 580ms">2008.</span>
+            </h1>
 
-              <p
-                class="rise rise-3 mt-6 lg:mt-9 text-[15px] sm:text-[16.5px] leading-[1.75] text-parchment/85 max-w-[52ch]"
+            <p class="hero-marquee-desc rise rise-4">
+              Don Cubano supplies independent retailers across Canada with
+              hand-rolled cigars at fair, durable wholesale pricing.
+            </p>
+
+            <div class="hero-marquee-cta rise rise-5">
+              <a href="#contact" class="btn-solid btn-shiny"
+                ><span>Open an account</span></a
               >
-                Don Cubano supplies independent retailers across Canada with
-                hand-rolled cigars at fair, durable wholesale pricing.
-              </p>
-
-              <div
-                class="rise rise-4 mt-8 lg:mt-12 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
+              <a href="#casaberro" class="btn-line btn-shiny"
+                ><span>View Casa Berro</span></a
               >
-                <a href="#contact" class="btn-solid">Open an account</a>
-                <a href="#casaberro" class="btn-line">View Casa Berro</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Hairline ticker strip -->
-          <div
-            class="border-y border-[oklch(0.692_0.082_75/0.18)] relative bg-ink"
-            style="z-index: 2"
-          >
-            <div
-              class="container-tight py-4 marks text-[11px] tracking-[0.22em] uppercase text-dust"
-            >
-              <span class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                Family-owned
-              </span>
-              <span class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                Canadian distributor
-              </span>
-              <span class="flex items-center gap-3">
-                <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-                Hand-rolled in Nicaragua
-              </span>
             </div>
           </div>
         </section>
 
-          <!-- ════════════════  SECTION 3 · Casa Berro  ════════════════ -->
-          <section
+          <!-- ════════════════  SECTION 3 · Casa Berro carousel  ════════════════ -->
+          <div
             id="casaberro"
-            class="relative hair-top"
-            style="background: var(--ink)"
+            class="pl-6 lg:pl-10 pt-6 sm:pt-8 lg:pt-10 pb-14 sm:pb-16 lg:pb-24 pr-6 lg:pr-10 scroll-mt-24"
           >
-            <!-- Full-bleed background image, fades to ink at bottom -->
-            <img
-              src="brand_assets/opt/2-1024.jpg"
-              srcset="
-                brand_assets/opt/2-640.jpg   640w,
-                brand_assets/opt/2-1024.jpg 1024w,
-                brand_assets/opt/2-1600.jpg 1600w
-              "
-              sizes="100vw"
-              alt=""
-              aria-hidden="true"
-              class="absolute inset-0 w-full h-full object-cover"
-              style="filter: saturate(0.88) contrast(1.03) brightness(0.68)"
-              width="1600"
-              height="2400"
-              loading="lazy"
-              decoding="async"
-            />
-
-            <!-- Overlay: top fade from ink (section join), radial darken for legibility, hard fade to ink at bottom -->
-            <div
-              class="absolute inset-0 pointer-events-none"
-              style="
-                background:
-                  radial-gradient(
-                    ellipse 80% 60% at 50% 40%,
-                    oklch(0.165 0.013 50 / 0.3) 0%,
-                    oklch(0.165 0.013 50 / 0.6) 55%,
-                    oklch(0.165 0.013 50 / 0.82) 100%
-                  ),
-                  linear-gradient(
-                    180deg,
-                    var(--ink) 0%,
-                    transparent 12%,
-                    transparent 60%,
-                    oklch(0.165 0.013 50 / 0.85) 80%,
-                    var(--ink) 100%
-                  );
-                z-index: 1;
-              "
-            ></div>
-
-            <!-- Header copy -->
-            <div
-              class="container-wide pt-14 sm:pt-20 lg:pt-28 pb-4 sm:pb-6 lg:pb-8 relative"
-              style="z-index: 2"
-            >
-              <div class="flex flex-col items-center text-center">
-                <div class="inline-flex items-center gap-3 eyebrow mb-6 sm:mb-7">
-                  <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
-                  <span>Casa Berro &middot; Signature Line</span>
-                  <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
-                </div>
-                <h2 class="h-display disp-h2-sm max-w-[18ch]">
-                  Casa Berro, <span class="serif-i">Our Signature Line.</span>
-                </h2>
-                <p
-                  class="mt-6 sm:mt-8 lg:mt-10 text-[15px] sm:text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
-                >
-                  Casa Berro offers four premium hand-rolled cigar blends
-                  developed in Nicaragua and supplied through Don Cubano.
-                  Family-owned and built for retailers, the brand delivers
-                  distinct profiles across its lineup with competitive
-                  wholesale pricing that keeps premium cigars accessible.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <!-- Casa Berro carousel (Gallery6 pattern, native JS + Embla-free) -->
-          <div class="pl-6 lg:pl-10 pt-6 sm:pt-8 lg:pt-10 pb-14 sm:pb-16 lg:pb-24 pr-6 lg:pr-0">
             <!-- Header row: title left, arrows right -->
             <div
               class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8 sm:mb-10 lg:mb-14 hair-bottom pb-6 sm:pb-8"
@@ -1900,42 +2252,63 @@
             </div>
           </div>
 
-          <!-- ════════════════  SECTION 2 · THE HOUSE × PROVENANCE  ════════════════ -->
+          <!-- ════════════════  SECTION · CASA BERRO INTRO  ════════════════ -->
         <section id="house" class="relative">
-          <!-- Centered intro, tobacco-field backdrop -->
+          <!-- Centered intro, Casa Berro signature-line backdrop -->
           <div class="house-intro relative overflow-hidden">
-            <img
-              src="brand_assets/20.jpg"
-              alt=""
-              aria-hidden="true"
-              class="absolute inset-0 w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="
+                  brand_assets/opt/2-640.webp   640w,
+                  brand_assets/opt/2-1024.webp 1024w,
+                  brand_assets/opt/2-1600.webp 1600w
+                "
+                sizes="100vw"
+              />
+              <img
+                src="brand_assets/opt/2-1024.jpg"
+                srcset="
+                  brand_assets/opt/2-640.jpg   640w,
+                  brand_assets/opt/2-1024.jpg 1024w,
+                  brand_assets/opt/2-1600.jpg 1600w
+                "
+                sizes="100vw"
+                alt=""
+                aria-hidden="true"
+                class="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div
               class="container-wide pt-14 sm:pt-20 lg:pt-28 pb-14 sm:pb-20 lg:pb-28 relative z-[1]"
             >
               <div class="flex flex-col items-center text-center">
                 <div class="inline-flex items-center gap-3 eyebrow mb-6 sm:mb-7">
                   <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
-                  <span>About Us</span>
+                  <span>Casa Berro &middot; Signature Line</span>
                   <span aria-hidden="true" class="w-6 h-px bg-gold/55"></span>
                 </div>
                 <h2 class="h-display disp-h2-sm max-w-[18ch]">
-                  A Family Trade,
-                  <span class="serif-i">Rolled in Estelí.</span>
+                  Casa Berro,
+                  <span class="serif-i">Our Signature Line.</span>
                 </h2>
                 <p
                   class="mt-6 sm:mt-8 lg:mt-10 text-[15px] sm:text-[16px] leading-[1.78] text-parchment/90 max-w-[60ch]"
                 >
-                  Don Cubano is a family-owned, Canadian wholesale cigar distributor based in Windsor, Ontario. Since 2008 we have worked directly with manufacturers in Estelí, Nicaragua, blending cigars with tobacco sourced from across four nations for the Canadian retail market.
+                  Casa Berro offers four premium hand-rolled cigar blends
+                  developed in Nicaragua and supplied through Don Cubano.
+                  Family-owned and built for retailers, the brand delivers
+                  distinct profiles across its lineup with competitive
+                  wholesale pricing that keeps premium cigars accessible.
                 </p>
               </div>
             </div>
           </div>
 
          <!-- Partner releases · Gallery4 pattern -->
-<div class="pt-12 sm:pt-16 lg:pt-24 pb-14 sm:pb-16 lg:pb-20">
+<div class="pt-12 sm:pt-16 lg:pt-24 pb-14 sm:pb-16 lg:pb-20 pr-6 lg:pr-10">
   <!-- Header -->
   <div class="container-tight mb-8 sm:mb-10 lg:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-5">
     <div>
@@ -2087,7 +2460,9 @@
       <p class="text-[14px] text-parchment/80 max-w-[520px] leading-[1.7]">
         A complete catalogue with current case pricing is sent privately to verified Canadian retailers.
       </p>
-      <a href="#contact" class="btn-line">Request the full catalogue</a>
+      <a href="#contact" class="btn-line btn-shiny"
+        ><span>Request the full catalogue</span></a
+      >
     </div>
   </div>
 
@@ -2174,10 +2549,34 @@
                 <div id="form-shell" class="relative">
                   <form
                     id="trade-form"
+                    action="https://formspree.io/f/xnjrdbdk"
+                    method="POST"
                     class="bg-ink-2 p-6 sm:p-8 lg:p-10 border border-rule"
                     novalidate
                     aria-describedby="form-status"
                   >
+                    <!-- Formspree: nicer email subject in your inbox -->
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="New trade enquiry — Don Cubano"
+                    />
+                    <!-- Formspree honeypot: bots fill this, humans don't -->
+                    <input
+                      type="text"
+                      name="_gotcha"
+                      tabindex="-1"
+                      autocomplete="off"
+                      aria-hidden="true"
+                      style="
+                        position: absolute;
+                        left: -9999px;
+                        width: 1px;
+                        height: 1px;
+                        opacity: 0;
+                        pointer-events: none;
+                      "
+                    />
                     <h3
                       class="serif text-[22px] sm:text-[26px] mt-3.5 leading-tight"
                     >
@@ -2298,7 +2697,7 @@
                     <button
                       type="submit"
                       id="form-submit"
-                      class="btn-solid mt-9 w-full justify-center"
+                      class="btn-solid btn-shiny mt-9 w-full justify-center"
                     >
                       <span class="submit-label">Submit enquiry</span>
                       <span class="submit-spinner hidden" aria-hidden="true"
@@ -2315,10 +2714,7 @@
 
                   <!-- Success state replaces form in place -->
                   <div id="form-success" class="form-success hidden">
-                    <div class="flex items-center justify-between">
-                      <div class="eyebrow">Form № 01</div>
-                      <div class="eyebrow text-gold">Received</div>
-                    </div>
+                    <div class="eyebrow text-gold">Received</div>
                     <h3 class="h-display disp-h3-sm mt-4">
                       We will be in touch within two trading days.
                     </h3>
@@ -2333,23 +2729,8 @@
                         data-email="doncubanotobacco@hotmail.com"
                         >doncubanotobacco@hotmail.com</a
                       >
-                      with the catalogue, current case pricing, and minimums for
-                      your province.
+                      with the catalogue and current case pricing.
                     </p>
-                    <ul class="mt-8 space-y-3 text-[13.5px] text-parchment/75">
-                      <li class="flex gap-3">
-                        <span class="num text-[15px] leading-tight">01</span
-                        ><span>Catalogue PDF, current quarter</span>
-                      </li>
-                      <li class="flex gap-3">
-                        <span class="num text-[15px] leading-tight">02</span
-                        ><span>Case pricing sheet, your province</span>
-                      </li>
-                      <li class="flex gap-3">
-                        <span class="num text-[15px] leading-tight">03</span
-                        ><span>One named point of contact, by phone</span>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
@@ -2496,31 +2877,6 @@
                 </li>
               </ul>
             </nav>
-            <div class="mt-6 lg:mt-3 lg:col-[4/11]">
-              <ul class="list-none flex flex-wrap -my-1 -mx-3 lg:justify-end">
-                <li class="my-1 mx-3 shrink-0">
-                  <a
-                    href="#"
-                    class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
-                    >Privacy</a
-                  >
-                </li>
-                <li class="my-1 mx-3 shrink-0">
-                  <a
-                    href="#"
-                    class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
-                    >Terms</a
-                  >
-                </li>
-                <li class="my-1 mx-3 shrink-0">
-                  <a
-                    href="#"
-                    class="text-[12.5px] text-dust underline-offset-4 hover:underline hover:text-parchment transition-colors duration-200"
-                    >Trade Policy</a
-                  >
-                </li>
-              </ul>
-            </div>
             <div
               class="mt-8 text-[12.5px] leading-[1.7] text-dust lg:mt-0 lg:row-[1/3] lg:col-[1/4]"
             >
@@ -2546,19 +2902,15 @@
         var STORAGE_KEY = "dc_age_verified";
         var STORAGE_DAYS = 30;
 
-        // The province dropdown labels each option with its smoking age inline, e.g. "Ontario (19)".
-        // The gate is a self-attestation: the visitor confirms they meet that age, no DOB collected.
+        // Self-attestation: the visitor confirms they are 19+, no DOB or province collected.
 
         // ──────────────────────  Elements  ──────────────────────
         var ageGate = document.getElementById("age-gate");
         var ageDecline = document.getElementById("age-decline");
         var site = document.getElementById("site");
         var agForm = document.getElementById("ag-form");
-        var agProvince = document.getElementById("ag-province");
-        var agConfirm = document.getElementById("ag-confirm");
         var agSubmit = document.getElementById("ag-submit");
         var agDeclineBtn = document.getElementById("ag-decline");
-        var agProvinceError = document.getElementById("ag-province-error");
 
         // ──────────────────────  Age Gate State  ──────────────────────
         function isVerified() {
@@ -2608,30 +2960,12 @@
           site.hidden = true;
           document.documentElement.style.overflow = "hidden";
           setTimeout(function () {
-            agProvince.focus();
+            agSubmit.focus();
           }, 30);
         }
 
-        // Confirm-button enable logic
-        function refreshAgSubmit() {
-          var ok = !!agProvince.value && agConfirm.checked;
-          agSubmit.disabled = !ok;
-        }
-        agProvince.addEventListener("change", function () {
-          agProvinceError.textContent = "";
-          refreshAgSubmit();
-        });
-        agConfirm.addEventListener("change", refreshAgSubmit);
-
         agForm.addEventListener("submit", function (e) {
           e.preventDefault();
-          if (!agProvince.value) {
-            agProvinceError.textContent =
-              "Please select a province to continue.";
-            agProvince.focus();
-            return;
-          }
-          if (!agConfirm.checked) return;
           persistVerification();
           showSite();
         });
@@ -2668,43 +3002,57 @@
           showGate();
         }
 
-        // ──────────────────────  Header scroll compression (rAF-throttled)  ──────────────────────
-        var header = document.getElementById("site-header");
-        var lastScroll = 0;
-        var scrollPending = false;
-        function applyScroll() {
-          scrollPending = false;
-          var y = window.scrollY || window.pageYOffset;
-          if (header) {
-            if (y > 200 && lastScroll <= 200)
-              header.classList.add("compressed");
-            else if (y <= 200 && lastScroll > 200)
-              header.classList.remove("compressed");
-          }
-          lastScroll = y;
-        }
-        window.addEventListener(
-          "scroll",
-          function () {
-            if (scrollPending) return;
-            scrollPending = true;
-            requestAnimationFrame(applyScroll);
-          },
-          { passive: true },
-        );
-
-        // ──────────────────────  Mobile menu toggle  ──────────────────────
+        // ──────────────────────  Mobile drawer toggle  ──────────────────────
         var menuBtn = document.getElementById("menu-toggle");
         var menuPanel = document.getElementById("mobile-menu");
-        if (menuBtn && menuPanel) {
+        var drawerBackdrop = document.getElementById("drawer-backdrop");
+        if (menuBtn && menuPanel && drawerBackdrop) {
+          var drawerHideTimer = null;
           function setMenu(open) {
             menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-            menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-            menuPanel.classList.toggle("open", open);
+            menuBtn.setAttribute(
+              "aria-label",
+              open ? "Close menu" : "Open menu",
+            );
+            if (open) {
+              if (drawerHideTimer) {
+                clearTimeout(drawerHideTimer);
+                drawerHideTimer = null;
+              }
+              menuPanel.hidden = false;
+              drawerBackdrop.hidden = false;
+              // Force layout so the transition runs from translateX(-100%).
+              void menuPanel.offsetWidth;
+              menuPanel.classList.add("open");
+              drawerBackdrop.classList.add("open");
+              document.documentElement.style.overflow = "hidden";
+            } else {
+              menuPanel.classList.remove("open");
+              drawerBackdrop.classList.remove("open");
+              document.documentElement.style.overflow = "";
+              drawerHideTimer = setTimeout(function () {
+                if (!menuPanel.classList.contains("open")) {
+                  menuPanel.hidden = true;
+                  drawerBackdrop.hidden = true;
+                }
+                drawerHideTimer = null;
+              }, 400);
+            }
           }
           menuBtn.addEventListener("click", function () {
             var open = menuBtn.getAttribute("aria-expanded") === "true";
             setMenu(!open);
+          });
+          drawerBackdrop.addEventListener("click", function () {
+            setMenu(false);
+          });
+          document.addEventListener("keydown", function (e) {
+            if (
+              e.key === "Escape" &&
+              menuBtn.getAttribute("aria-expanded") === "true"
+            ) {
+              setMenu(false);
+            }
           });
           // Close on link tap and on viewport widening past breakpoint
           menuPanel.querySelectorAll("a").forEach(function (a) {
@@ -2816,15 +3164,11 @@
             spinner.classList.remove("hidden");
             statusText.textContent = "Submitting trade enquiry.";
 
-            // Simulated submit: replace this fetch with the real endpoint when wired.
-            // fetch('/api/trade-enquiry', { method: 'POST', body: new FormData(form) })
-            var simulate = new Promise(function (resolve) {
-              setTimeout(function () {
-                resolve({ ok: true });
-              }, 1100);
-            });
-
-            simulate
+            fetch(form.action, {
+              method: "POST",
+              body: new FormData(form),
+              headers: { Accept: "application/json" },
+            })
               .then(function (res) {
                 if (res.ok) {
                   form.classList.add("hidden");
@@ -2837,7 +3181,7 @@
                     heading.focus({ preventScroll: false });
                   }
                 } else {
-                  throw new Error("not ok");
+                  throw new Error("formspree-" + res.status);
                 }
               })
               .catch(function () {
